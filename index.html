@@ -1270,35 +1270,20 @@
         .task-edit-button::before {
             content: '✏️';
         }
-        /* Duplicate Button - Bottom-Left of task card */
-        .task-duplicate-button {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.15) 100%);
-            border: 1.5px solid rgba(139,92,246,0.4);
-            border-radius: 10px;
-            cursor: pointer;
-            padding: 6px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            transition: all 0.2s ease;
-            z-index: 10;
-            font-size: 13px;
-            color: #a78bfa;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        .task-duplicate-button:hover {
-            background: linear-gradient(135deg, rgba(99,102,241,0.3) 0%, rgba(139,92,246,0.3) 100%);
-            border-color: rgba(139,92,246,0.7);
-            transform: scale(1.05);
+        /* Duplicate Button - icon-only, lives inside .task-actions row */
+        .action-duplicate {
+            background: linear-gradient(135deg, rgba(99,102,241,0.25) 0%, rgba(139,92,246,0.25) 100%);
+            border: 1.5px solid rgba(139,92,246,0.5);
             color: #c4b5fd;
+            min-width: 44px;
+            width: 44px;
+            font-size: 18px;
         }
-        .task-duplicate-button:active {
-            transform: scale(0.97);
+        .action-duplicate:hover {
+            background: linear-gradient(135deg, rgba(99,102,241,0.45) 0%, rgba(139,92,246,0.45) 100%);
+            border-color: rgba(139,92,246,0.85);
+            transform: scale(1.05);
+            color: #ede9fe;
         }
 
         /* Delete Button - Style like "Abandon Quest" */
@@ -7620,7 +7605,7 @@ input:checked + .toggle-slider:before {
                     return `
 	                        <div class="task-card" data-task-id="${task.id}">
 	                            <button class="task-edit-button" onclick="editTask(${taskIndex})" title="Edit task"></button>
-	                            <button class="task-duplicate-button" onclick="event.stopPropagation(); duplicateTask(${taskIndex})" title="Duplicate task">⧉ Duplicate</button>
+
 	                            
 	                            <div class="task-header">
 	                                <div class="task-emoji">${categoryInfo.emoji}</div>
@@ -7644,6 +7629,7 @@ input:checked + .toggle-slider:before {
 				                                ` : `
 				                                    <button class="action-btn action-complete" onclick="event.stopPropagation(); completeTask(${taskIndex})" title="Mark Complete" style="${task.subtasks && task.subtasks.length > 0 && task.subtasks.some(st => !st.completed) ? 'opacity: 0.5; cursor: not-allowed;' : ''}" ${task.subtasks && task.subtasks.length > 0 && task.subtasks.some(st => !st.completed) ? 'disabled' : ''}>✓</button>
 				                                `}
+<button class="action-btn action-duplicate" onclick="event.stopPropagation(); duplicateTask(${taskIndex})" title="Duplicate task">⧉</button>
 		                                <button class="action-btn action-remove" onclick="event.stopPropagation(); deleteTask(${taskIndex})" title="Delete">×</button>
 		                            </div>
 	                        </div>
