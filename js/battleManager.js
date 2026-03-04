@@ -74,8 +74,7 @@ class BattleManager {
                     } else if (elapsed >= 30000) {
                         // Timeout after 30 seconds
                         clearInterval(checkTutorial);
-                        console.warn('[Battle] Tutorial timeout, proceeding with battle');
-                        localStorage.setItem('battleTutorialCompleted', 'true');
+                                                localStorage.setItem('battleTutorialCompleted', 'true');
                         resolve();
                     }
                 }, 500);
@@ -93,8 +92,7 @@ class BattleManager {
         
         // Verify gameState inventory is loaded
         if (!window.gameState.battleInventory) {
-            console.warn('Battle inventory not found, initializing...');
-            window.gameState.battleInventory = {
+                        window.gameState.battleInventory = {
                 fireball: 0,
                 spark: 0,
                 health_potion: 2,
@@ -109,8 +107,7 @@ class BattleManager {
         }
         
         if (!window.gameState.unlockedBattleItems) {
-            console.warn('Unlocked battle items not found, initializing...');
-            window.gameState.unlockedBattleItems = ['health_potion', 'attack_refill', 'defense_refill'];
+                        window.gameState.unlockedBattleItems = ['health_potion', 'attack_refill', 'defense_refill'];
         }
         
         // Initialize special attack gauge if not exists
@@ -233,22 +230,16 @@ class BattleManager {
                 enemySpriteElement.style.opacity = '1';
 
             } else {
-                console.error('[Battle] Enemy has no idle sprite!', this.enemy);
-            }
+                            }
         } else {
-            console.error('[Battle] Cannot set enemy sprite - element or enemy data missing');
-            console.error('[Battle] enemySpriteElement:', enemySpriteElement);
-            console.error('[Battle] this.enemy:', this.enemy);
-            console.error('[Battle] this.enemy.sprites:', this.enemy?.sprites);
-        }
+                                                        }
 
         // Render hero sprite
 
         if (typeof renderHeroSprite === 'function') {
             renderHeroSprite();
         } else {
-            console.error('[Battle] renderHeroSprite function not found!');
-        }
+                    }
 
         // Initialize enemy sprite with correct size class
 
@@ -259,12 +250,9 @@ class BattleManager {
                 initEnemySprite(this.enemy);
 
             } catch (error) {
-                console.error('[Battle] initEnemySprite error:', error);
-            }
+                            }
         } else {
-            console.error('[Battle] initEnemySprite function not found!');
-            console.error('[Battle] Available window functions:', Object.keys(window).filter(k => k.includes('Enemy') || k.includes('enemy')));
-        }
+                                }
 
         // Play wake up sequence
         addBattleLog(`💤 A ${this.enemy.name} appears!`);
@@ -273,8 +261,7 @@ class BattleManager {
             await playWakeUpSequence(this.enemy);
 
         } catch (error) {
-            console.error('[Battle] playWakeUpSequence error:', error);
-            // Emergency fallback: set enemy sprite directly
+                        // Emergency fallback: set enemy sprite directly
             const enemySprite = document.getElementById('enemySprite');
             if (enemySprite && this.enemy) {
                 const enemyName = this.enemy.name;
@@ -287,8 +274,7 @@ class BattleManager {
         // CRITICAL FIX: Verify enemy sprite is visible after wake-up
         const enemySprite = document.getElementById('enemySprite');
         if (enemySprite && (!enemySprite.src || enemySprite.src === '')) {
-            console.warn('[Battle] Enemy sprite src is empty! Applying emergency fix...');
-            if (this.enemy && this.enemy.name) {
+                        if (this.enemy && this.enemy.name) {
                 const enemyName = this.enemy.name;
                 const idlePath = `assets/enemies/${enemyName}/${enemyName}-IdleFly-animated.gif`;
                 enemySprite.src = idlePath;
@@ -306,8 +292,7 @@ class BattleManager {
             await this.enemyTurn();
 
         } catch (error) {
-            console.error('[Battle] Error during enemyTurn:', error);
-            // Emergency fallback: force PLAYER_TURN state
+                        // Emergency fallback: force PLAYER_TURN state
             this.state = BattleState.PLAYER_TURN;
             addBattleLog('⚔️ Your turn!');
             if (typeof updateActionButtons === 'function') {
@@ -389,8 +374,7 @@ class BattleManager {
     async playerAttack() {
 
         if (this.state !== BattleState.PLAYER_TURN) {
-            console.warn('[Battle] playerAttack blocked - not player turn');
-            return;
+                        return;
         }
         
         // FIX: Stop turn timer when player takes action
@@ -2497,8 +2481,7 @@ class BattleManager {
         
         // Safety check: ensure damage is a valid number
         if (isNaN(damage) || damage === undefined || damage === null) {
-            console.error('[Battle] Invalid damage calculated, using default:', damage);
-            damage = 5; // Safe default
+                        damage = 5; // Safe default
         }
         
         // Apply damage cap if enemy has one
@@ -2672,8 +2655,7 @@ class BattleManager {
                 
                 // Ensure xpGained is valid
                 if (isNaN(xpGained) || xpGained === null || xpGained === undefined) {
-                    console.error('[Battle] XP calculation failed, using default');
-                    xpGained = 20; // Default XP
+                                        xpGained = 20; // Default XP
                 }
 
                 // Show loot modal

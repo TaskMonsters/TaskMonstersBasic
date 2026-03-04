@@ -125,14 +125,12 @@ class NameEmailModal {
                         showNotification('Thanks! Your monster is ready to fight!', 'success');
                     }
                 } else {
-                    console.error('Formspree submission failed', response.status);
-                    if (typeof showNotification === 'function') {
+                                        if (typeof showNotification === 'function') {
                         showNotification('Submission failed. Please try again later.', 'error');
                     }
                 }
             } catch (error) {
-                console.error('Network error during Formspree submission', error);
-                if (typeof showNotification === 'function') {
+                                if (typeof showNotification === 'function') {
                     showNotification('Network error. Please check your connection.', 'error');
                 }
             } finally {

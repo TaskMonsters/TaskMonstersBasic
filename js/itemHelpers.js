@@ -6,8 +6,7 @@
 // Use a consumable item from owned inventory
 function useOwnedItem(itemId) {
     if (!window.inventoryManager) {
-        console.error('Inventory manager not loaded');
-        return;
+                return;
     }
 
     const success = window.inventoryManager.useItem(itemId);

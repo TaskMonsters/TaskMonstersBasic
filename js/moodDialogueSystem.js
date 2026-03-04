@@ -469,8 +469,7 @@ const MoodDialogueSystem = {
             });
         });
         } catch (error) {
-            console.error('[MoodDialogueSystem] Error showing mood tracker:', error);
-        }
+                    }
     },
     
     // Record mood - SYNCED with moodTracker.js localStorage system
@@ -594,8 +593,7 @@ const MoodDialogueSystem = {
     // Get dialogue text
     getDialogueText(monsterType, context, moodType = null) {
         if (!DIALOGUE_DATA || !DIALOGUE_DATA.monsters || !DIALOGUE_DATA.monsters[monsterType]) {
-            console.error('[MoodDialogueSystem] Dialogue data not found for:', monsterType);
-            return null;
+                        return null;
         }
         
         const monsterDialogue = DIALOGUE_DATA.monsters[monsterType];

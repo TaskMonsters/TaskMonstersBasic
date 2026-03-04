@@ -25,8 +25,7 @@
 
         }
     } catch (e) {
-        console.warn('⚠️ Pre-hydration failed:', e);
-    }
+            }
     
     // UI will be revealed after loadGameState() completes in DOMContentLoaded
 })();

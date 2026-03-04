@@ -194,8 +194,7 @@ window.addJerryXP = function(amount) {
       hero.celebrate();
     }
   } else {
-    console.error('Hero object not initialized. Cannot add XP.');
-  }
+      }
 };
 
 // Initialize when DOM is ready

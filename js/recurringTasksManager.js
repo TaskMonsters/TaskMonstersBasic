@@ -13,8 +13,7 @@ class RecurringTasksManager {
             const stored = localStorage.getItem('recurringTasks');
             return stored ? JSON.parse(stored) : [];
         } catch (error) {
-            console.error('Error loading recurring tasks:', error);
-            return [];
+                        return [];
         }
     }
 
@@ -23,8 +22,7 @@ class RecurringTasksManager {
         try {
             localStorage.setItem('recurringTasks', JSON.stringify(this.recurringTasks));
         } catch (error) {
-            console.error('Error saving recurring tasks:', error);
-        }
+                    }
     }
 
     // Initialize - check for tasks that need to be created

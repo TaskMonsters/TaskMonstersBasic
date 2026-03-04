@@ -33,8 +33,7 @@ class NotificationManager {
 
     async _doInit() {
         if (typeof Notification === 'undefined') {
-            console.warn('[Notifications] Browser does not support Notifications API');
-            return;
+                        return;
         }
         if (Notification.permission === 'granted') {
             this.permissionGranted = true;
@@ -49,8 +48,7 @@ class NotificationManager {
     // ===================================
     async _registerServiceWorker() {
         if (!('serviceWorker' in navigator)) {
-            console.warn('[Notifications] Service Workers not supported - using basic notifications');
-            return;
+                        return;
         }
         try {
             // Reuse existing registration if already present (avoids double-register)
@@ -78,8 +76,7 @@ class NotificationManager {
             this._pendingMessages = [];
 
         } catch (err) {
-            console.error('[Notifications] SW registration failed - falling back to basic notifications:', err);
-        }
+                    }
     }
 
     // ===================================
@@ -183,8 +180,7 @@ class NotificationManager {
 
                 return;
             } catch (err) {
-                console.warn('[Notifications] SW schedule failed - using setTimeout fallback:', err);
-            }
+                            }
         }
         // Fallback: in-page setTimeout (app must remain open)
         this._scheduleBasicNotifications(task, taskIndex);
@@ -214,8 +210,7 @@ class NotificationManager {
 
                 return;
             } catch (err) {
-                console.warn('[Notifications] SW reschedule failed - using fallback:', err);
-            }
+                            }
         }
         // Fallback
         activeTasks.forEach(({ task, index }) => this._scheduleBasicNotifications(task, index));
@@ -231,8 +226,7 @@ class NotificationManager {
             try {
                 await this._sendToSW({ type: 'CLEAR_TASK_NOTIFICATIONS', payload: { taskId } });
             } catch (err) {
-                console.warn('[Notifications] Could not clear SW notifications for task:', err);
-            }
+                            }
         }
         this._clearBasicNotifications(taskId);
     }
@@ -245,8 +239,7 @@ class NotificationManager {
             try {
                 await this._sendToSW({ type: 'CLEAR_ALL_NOTIFICATIONS' });
             } catch (err) {
-                console.warn('[Notifications] Could not clear all SW notifications:', err);
-            }
+                            }
         }
         this._basicTimeouts.forEach(timeouts => timeouts.forEach(id => clearTimeout(id)));
         this._basicTimeouts.clear();
@@ -332,8 +325,7 @@ class NotificationManager {
             notif.onclick = () => { window.focus(); notif.close(); };
             setTimeout(() => notif.close(), 15000);
         } catch (err) {
-            console.error('[Notifications] Basic notification error:', err);
-        }
+                    }
     }
 
     // ===================================

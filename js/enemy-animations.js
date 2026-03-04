@@ -16,8 +16,7 @@ function playEnemyAnimation(enemy, animationKey, duration = 500) {
         }
         
         if (!spriteElement || !enemy) {
-            console.warn('[EnemyAnimation] Sprite element or enemy not found');
-            resolve();
+                        resolve();
             return;
         }
         
@@ -67,8 +66,7 @@ function playEnemyAnimation(enemy, animationKey, duration = 500) {
             }
         } else {
             // Final fallback if no sprites defined
-            console.error('[EnemyAnimation] Enemy has no sprites defined:', enemy);
-            animationPath = 'assets/enemies/Lazy Bat/Lazy Bat-IdleFly-animated.gif'; // Safe fallback
+                        animationPath = 'assets/enemies/Lazy Bat/Lazy Bat-IdleFly-animated.gif'; // Safe fallback
         }
 
         // CRITICAL FIX: Clear any background image to prevent overlay
@@ -126,12 +124,10 @@ function initEnemySprite(enemy) {
 
     const spriteElement = document.getElementById('enemySprite');
     if (!spriteElement) {
-        console.error('[InitEnemy] Enemy sprite element not found!');
-        return;
+                return;
     }
     if (!enemy) {
-        console.error('[InitEnemy] Enemy object is null/undefined!');
-        return;
+                return;
     }
     
     const enemyName = enemy.name;
@@ -146,8 +142,7 @@ function initEnemySprite(enemy) {
 
     } else {
         // Final fallback
-        console.warn('[InitEnemy] No sprites defined for enemy, using fallback');
-        idleGif = 'assets/enemies/Lazy Bat/Lazy Bat-IdleFly-animated.gif';
+                idleGif = 'assets/enemies/Lazy Bat/Lazy Bat-IdleFly-animated.gif';
     }
     
     // CRITICAL FIX: Clear any background image to prevent overlay

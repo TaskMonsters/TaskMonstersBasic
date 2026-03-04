@@ -283,8 +283,7 @@ const BattleSystem = {
     createBattleElements() {
         const creatureContainer = document.querySelector('.creature-container');
         if (!creatureContainer) {
-            console.error('Creature container not found!');
-            return;
+                        return;
         }
 
         // Enemy Container

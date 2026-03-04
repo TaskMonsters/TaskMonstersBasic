@@ -4,8 +4,7 @@ export async function preloadImages(paths) {
     const img = new Image();
     img.onload = () => resolve(src);
     img.onerror = () => {
-      console.warn(`Failed to load image: ${src}`);
-      resolve(src); // Continue even if one image fails
+            resolve(src); // Continue even if one image fails
     };
     img.src = src;
   }));
@@ -44,8 +43,7 @@ export async function preloadAllAssets() {
 
     return true;
   } catch (error) {
-    console.error('Error loading assets:', error);
-    return false;
+        return false;
   }
 }
 

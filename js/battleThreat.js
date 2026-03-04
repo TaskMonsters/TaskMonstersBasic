@@ -109,8 +109,7 @@ class ThreatSystem {
                 threatHistory: this.threatHistory
             }));
         } catch (e) {
-            console.error('Failed to save threat data:', e);
-        }
+                    }
     }
     
     load() {
@@ -125,8 +124,7 @@ class ThreatSystem {
                 this.decayThreat();
             }
         } catch (e) {
-            console.error('Failed to load threat data:', e);
-        }
+                    }
     }
     
     reset() {

@@ -18,13 +18,11 @@ const CACHE_NAME = 'task-monsters-v3';
 // INSTALL & ACTIVATE
 // ===================================
 self.addEventListener('install', (event) => {
-    console.log('[SW] Service Worker installed v' + SW_VERSION);
-    self.skipWaiting();
+        self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-    console.log('[SW] Service Worker activated v' + SW_VERSION);
-    event.waitUntil(clients.claim());
+        event.waitUntil(clients.claim());
 });
 
 // ===================================
@@ -117,8 +115,7 @@ function startNotificationChecker() {
     // Only create one interval
     if (checkInterval) return;
     checkInterval = setInterval(checkAndFireNotifications, 30000);
-    console.log('[SW] Notification checker started');
-}
+    }
 
 async function checkAndFireNotifications() {
     try {
@@ -144,17 +141,14 @@ async function checkAndFireNotifications() {
                             { action: 'dismiss', title: 'Dismiss' }
                         ]
                     });
-                    console.log('[SW] Fired notification: ' + notif.title);
-                } catch (showErr) {
-                    console.error('[SW] showNotification failed:', showErr);
-                }
+                                    } catch (showErr) {
+                                    }
                 // Always remove from DB whether or not showNotification succeeded
                 await deleteScheduledNotification(notif.id);
             }
         }
     } catch (err) {
-        console.error('[SW] Error in checkAndFireNotifications:', err);
-    }
+            }
 }
 
 // ===================================
@@ -185,8 +179,7 @@ async function handleScheduleNotifications({ task, taskId, intervals }) {
             });
         }
     }
-    console.log('[SW] Scheduled reminders for: "' + taskTitle + '" (' + taskId + ')');
-}
+    }
 
 // ===================================
 // MESSAGE HANDLER
@@ -238,8 +231,7 @@ self.addEventListener('message', async (event) => {
                 port && port.postMessage({ success: false, error: 'Unknown message type: ' + type });
         }
     } catch (err) {
-        console.error('[SW] Message handler error for type "' + type + '":', err);
-        port && port.postMessage({ success: false, error: err.message });
+                port && port.postMessage({ success: false, error: err.message });
     }
 });
 
@@ -262,8 +254,7 @@ self.addEventListener('push', (event) => {
             })
         );
     } catch (err) {
-        console.error('[SW] Push event error:', err);
-    }
+            }
 });
 
 // ===================================
@@ -303,8 +294,7 @@ self.addEventListener('notificationclick', (event) => {
 // ===================================
 self.addEventListener('periodicsync', (event) => {
     if (event.tag === 'check-task-notifications') {
-        console.log('[SW] Periodic sync fired - checking notifications');
-        event.waitUntil(checkAndFireNotifications());
+                event.waitUntil(checkAndFireNotifications());
     }
 });
 
@@ -319,4 +309,3 @@ self.addEventListener('sync', (event) => {
 
 // Start the checker immediately when SW loads
 startNotificationChecker();
-console.log('[SW] Task Monsters Service Worker v' + SW_VERSION + ' loaded');

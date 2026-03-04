@@ -24,14 +24,12 @@ class SubtasksManager {
     toggleSubtask(taskId, subtaskId, isChecked) {
         const task = this.findTaskById(taskId);
         if (!task || !task.subtasks) {
-            console.error('[SubtasksManager] Task or subtasks not found:', taskId);
-            return;
+                        return;
         }
 
         const subtask = task.subtasks.find(st => st.id === subtaskId);
         if (!subtask) {
-            console.error('[SubtasksManager] Subtask not found:', subtaskId);
-            return;
+                        return;
         }
 
         subtask.completed = isChecked;
@@ -65,8 +63,7 @@ class SubtasksManager {
     addSubtask(taskId, subtaskTitle) {
         const task = this.findTaskById(taskId);
         if (!task) {
-            console.error('[SubtasksManager] Task not found:', taskId);
-            return;
+                        return;
         }
 
         if (!task.subtasks) {
@@ -95,14 +92,12 @@ class SubtasksManager {
     editSubtask(taskId, subtaskId, newTitle) {
         const task = this.findTaskById(taskId);
         if (!task || !task.subtasks) {
-            console.error('[SubtasksManager] Task or subtasks not found:', taskId);
-            return;
+                        return;
         }
 
         const subtask = task.subtasks.find(st => st.id === subtaskId);
         if (!subtask) {
-            console.error('[SubtasksManager] Subtask not found:', subtaskId);
-            return;
+                        return;
         }
 
         subtask.title = newTitle;
@@ -120,14 +115,12 @@ class SubtasksManager {
     deleteSubtask(taskId, subtaskId) {
         const task = this.findTaskById(taskId);
         if (!task || !task.subtasks) {
-            console.error('[SubtasksManager] Task or subtasks not found:', taskId);
-            return;
+                        return;
         }
 
         const index = task.subtasks.findIndex(st => st.id === subtaskId);
         if (index === -1) {
-            console.error('[SubtasksManager] Subtask not found:', subtaskId);
-            return;
+                        return;
         }
 
         task.subtasks.splice(index, 1);
@@ -227,8 +220,7 @@ class SubtasksManager {
         // Find the specific task card in the DOM using the data-task-id attribute
         const taskCard = document.querySelector(`.task-card[data-task-id="${taskId}"]`);
         if (!taskCard) {
-            console.warn(`[SubtasksManager] Could not find task card in DOM for ID: ${taskId}`);
-            return;
+                        return;
         }
 
         // Update progress bar and text manually to ensure immediate feedback

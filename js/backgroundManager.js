@@ -63,8 +63,7 @@
       const mode = activeTheme ? 'custom theme' : (isNight ? 'night' : 'day');
 
     } else {
-      console.warn('[BackgroundManager] Pet rock header not found, retrying...');
-      // Retry after a short delay if element not found yet
+            // Retry after a short delay if element not found yet
       setTimeout(updateBackground, 100);
     }
   }

@@ -156,8 +156,7 @@ class MoodTracker {
             });
 
         } else {
-            console.warn('[MoodTracker] Monster container not found, retrying in 1s');
-            setTimeout(() => this.createTooltip(), 1000);
+                        setTimeout(() => this.createTooltip(), 1000);
         }
     }
     
@@ -281,8 +280,7 @@ class MoodTracker {
             });
 
         } else {
-            console.warn('[MoodTracker] mainHeroSprite not found, retrying in 1s');
-            setTimeout(() => this.addMonsterClickListener(), 1000);
+                        setTimeout(() => this.addMonsterClickListener(), 1000);
         }
     }
     
@@ -312,8 +310,7 @@ class MoodTracker {
 
         const sprite = document.getElementById('mainHeroSprite');
         if (!sprite) {
-            console.warn('[MoodTracker] Main hero sprite not found');
-            return;
+                        return;
         }
         
         // Get current monster and skin info
@@ -381,8 +378,7 @@ class MoodTracker {
                     });
                 };
                 jumpImage.onerror = () => {
-                    console.error('[MoodTracker] Failed to load jump GIF:', jumpGif);
-                    // Fallback: just do transform without changing sprite
+                                        // Fallback: just do transform without changing sprite
                     sprite.style.transition = 'transform 0.3s ease';
                     sprite.style.transform = 'scale(4) translateY(-20px)';
                     setTimeout(() => {

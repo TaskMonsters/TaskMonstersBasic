@@ -87,8 +87,7 @@ class InventoryManager {
         }
 
         if (!item) {
-            console.error('Item not found:', itemId);
-            return false;
+                        return false;
         }
 
         // Apply item effect based on type

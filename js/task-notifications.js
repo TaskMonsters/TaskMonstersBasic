@@ -135,8 +135,7 @@ class TaskNotificationsManager {
                 notification.close();
             };
         } catch (error) {
-            console.error('[TaskNotifications] Error sending basic notification:', error);
-        }
+                    }
     }
 
     /**
@@ -167,8 +166,7 @@ class TaskNotificationsManager {
                 }
             }
         } catch (error) {
-            console.error('[TaskNotifications] Error loading sent notifications:', error);
-            this.sentNotifications = new Map();
+                        this.sentNotifications = new Map();
         }
     }
 
@@ -180,8 +178,7 @@ class TaskNotificationsManager {
             const data = Object.fromEntries(this.sentNotifications);
             localStorage.setItem('sentTaskNotifications', JSON.stringify(data));
         } catch (error) {
-            console.error('[TaskNotifications] Error saving sent notifications:', error);
-        }
+                    }
     }
 
     /**

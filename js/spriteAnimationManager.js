@@ -24,8 +24,7 @@ class SpriteAnimationManager {
                 resolve(img);
             };
             img.onerror = () => {
-                console.error('[SpriteAnimationManager] Failed to load:', src);
-                reject(new Error(`Failed to load sprite: ${src}`));
+                                reject(new Error(`Failed to load sprite: ${src}`));
             };
             img.src = src;
         });
@@ -57,8 +56,7 @@ class SpriteAnimationManager {
 
         const element = document.getElementById(elementId);
         if (!element) {
-            console.error(`[SpriteAnimationManager] Element not found: ${elementId}`);
-            return;
+                        return;
         }
 
         // Get animation config
@@ -71,16 +69,14 @@ class SpriteAnimationManager {
         const animationRows = appearance.animationRows || {};
 
         if (!spriteSrc) {
-            console.error(`[SpriteAnimationManager] No sprite for animation: ${animationType}`);
-            return;
+                        return;
         }
 
         // Preload the sprite
         try {
             await this.preloadImage(spriteSrc);
         } catch (error) {
-            console.error(`[SpriteAnimationManager] Failed to preload sprite:`, error);
-            return;
+                        return;
         }
 
         // Set up the element

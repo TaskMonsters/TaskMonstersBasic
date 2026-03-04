@@ -83,8 +83,7 @@ class SkinsManager {
         } else if (retries > 0) {
             setTimeout(() => this.ensureSpriteReady(callback, retries - 1), 100);
         } else {
-            console.error('[SkinsManager] Failed to find mainHeroSprite after retries');
-        }
+                    }
     }
 
     /**

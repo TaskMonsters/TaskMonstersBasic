@@ -85,8 +85,7 @@ function getNextArenaBackground() {
     
     // Fallback if no arenas available
     if (availableArenas.length === 0) {
-        console.warn(`[Arena] No arenas available for level ${playerLevel}, using fallback`);
-        return 'assets/battle-backgrounds/synth-city Level 10 - 20 and up .png';
+                return 'assets/battle-backgrounds/synth-city Level 10 - 20 and up .png';
     }
     
     // Get current arena and rotate to next
@@ -127,8 +126,7 @@ function getActiveHeroAppearance() {
     
     // CRITICAL: Log why we're falling back to default monster
     if (equippedSkinId) {
-        console.warn('[Battle] ⚠️ Skin equipped but not found in config:', equippedSkinId);
-    }
+            }
     
     // Fallback to default monster - USE GIF ANIMATIONS
     const defaultMonsterMap = {
@@ -172,15 +170,13 @@ function getActiveHeroAppearance() {
 function renderHeroSprite() {
     const heroSprite = document.getElementById('heroSprite');
     if (!heroSprite) {
-        console.error('[Battle] Hero sprite element not found in DOM');
-        return;
+                return;
     }
     
     const appearance = getActiveHeroAppearance();
     
     if (!appearance || !appearance.animations || !appearance.animations.idle) {
-        console.error('[Battle] Unable to get valid hero appearance', { appearance });
-        // Last resort fallback - use img src
+                // Last resort fallback - use img src
         heroSprite.src = 'assets/heroes/Nova_idle.gif';
     } else {
         // Set as img src (element is now <img> not <div>)
@@ -228,8 +224,7 @@ window.renderHeroSprite = renderHeroSprite;
 function startHeroAnimation(animationType = 'idle') {
     const heroSprite = document.getElementById('heroSprite');
     if (!heroSprite) {
-        console.error('[Battle] Hero sprite element not found');
-        return;
+                return;
     }
     
     // Stop any existing animation
@@ -247,10 +242,7 @@ function startHeroAnimation(animationType = 'idle') {
     
     // CRITICAL: Validate appearance object
     if (!appearance) {
-        console.error('[Battle] ❌ CRITICAL: getActiveHeroAppearance() returned null/undefined!');
-        console.error('[Battle] gameState:', window.gameState);
-        console.error('[Battle] equippedSkinId:', currentSkinId);
-        // Force fallback to Nova
+                                // Force fallback to Nova
         heroSprite.src = 'assets/heroes/Nova_idle.gif';
         return;
     }
@@ -342,10 +334,7 @@ function startHeroAnimation(animationType = 'idle') {
     // ⚠️ WARNING: CODE BELOW SHOULD NEVER EXECUTE ⚠️
     // Both skins and default monsters now use GIF animations (return early above)
     // This spritesheet code is kept only as a safety fallback
-    console.error('[Battle] ❌ ERROR: Reached spritesheet code! This should never happen.');
-    console.error('[Battle] appearance:', appearance);
-    console.error('[Battle] animationType:', animationType);
-    
+                
     // Force GIF animation as absolute fallback
     heroSprite.style.backgroundImage = 'none';
     heroSprite.style.background = 'none';
@@ -384,8 +373,7 @@ function initializeHeroSprite() {
         // Then start the animation
         startHeroAnimation('idle');
     } else {
-        console.error('[Battle] Cannot initialize hero sprite - element not found');
-    }
+            }
 }
 
 // Battle system initialization is handled in battleManager.js
@@ -400,8 +388,7 @@ function startTestBattle() {
     
     // Safeguard: Check if Battle Manager is initialized
     if (!window.battleManager || !window.battleManager.initialized) {
-        console.warn('⚠️ Battle Manager not initialized – skipping battle trigger');
-        return;
+                return;
     }
 
     // Create hero data from gameState
@@ -472,16 +459,13 @@ function startTestBattle() {
         // Create regular enemy
         // Wait for enemy.js to load if not ready yet
         if (typeof window.createRandomEnemy !== 'function') {
-            console.warn('⏳ createRandomEnemy not ready yet, waiting for enemy.js to load...');
-            // Retry after a short delay
+                        // Retry after a short delay
             setTimeout(() => {
                 if (typeof window.createRandomEnemy === 'function') {
 
                     startTestBattle();
                 } else {
-                    console.error('❌ createRandomEnemy still not defined after wait. Make sure enemy.js is loaded.');
-                    console.error('Available window functions:', Object.keys(window).filter(k => k.includes('enemy')));
-                }
+                                                        }
             }, 500);
             return;
         }
@@ -529,8 +513,7 @@ function attachBattleButton() {
             });
 
         } else {
-            console.warn('Start Battle button not found (this is normal if not in battle mode)');
-        }
+                    }
     }, 1000);
 }
 
@@ -592,8 +575,7 @@ function maybeTriggerBattle(sourceType) {
     
     // Safeguard: Check if Battle Manager is initialized
     if (!window.battleManager || !window.battleManager.initialized) {
-        console.warn('⚠️ Battle Manager not initialized – skipping battle trigger');
-        return false;
+                return false;
     }
     
     let chance = 0;

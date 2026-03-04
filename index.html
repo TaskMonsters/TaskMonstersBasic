@@ -5,7 +5,7 @@
 <script src="js/instantHydration.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-<title>Task Monsters v3.32</title>
+<title>Task Monsters</title>
 <!-- PWA Manifest -->
 <link href="manifest.json" rel="manifest"/>
 <!-- PWA Meta Tags -->
@@ -5606,8 +5606,7 @@ input:checked + .toggle-slider:before {
             
             if (window.__HYDRATED_STATE__) {
                 parsedState = window.__HYDRATED_STATE__;
-                console.log('✅ Using pre-hydrated state (no flash)');
-            } else {
+                            } else {
                 const saved = localStorage.getItem('taskRockGameState');
                 if (saved) {
                     parsedState = JSON.parse(saved);
@@ -5843,7 +5842,7 @@ input:checked + .toggle-slider:before {
             // gameState.jerryXP = 50000;
             // gameState.health = 100;
             // gameState.isEgg = false;
-            // console.log('[TEST MODE] Level set to 50 with 50000 XP Coins');
+            // 
             
             // CRITICAL FIX: Initialize skinsManager AFTER gameState is fully loaded
             // This ensures equippedSkinId is available when skinsManager.init() runs
@@ -5953,14 +5952,12 @@ input:checked + .toggle-slider:before {
                     // Add flicker class for CSS animation
                     if (!mainHeroSprite.classList.contains('low-hp-flicker')) {
                         mainHeroSprite.classList.add('low-hp-flicker');
-                        console.log('⚠️ [HP Flicker] HP below 20, flickering started');
-                    }
+                                            }
                 } else {
                     // Remove flicker if HP >= 20
                     if (mainHeroSprite.classList.contains('low-hp-flicker')) {
                         mainHeroSprite.classList.remove('low-hp-flicker');
-                        console.log('✅ [HP Flicker] HP above 20, flickering stopped');
-                    }
+                                            }
                 }
             }
             
@@ -6171,8 +6168,7 @@ input:checked + .toggle-slider:before {
             const phrases = categoryPhrases[category] || categoryPhrases.generic;
             // Extra safety: ensure we always return an array
             if (!phrases || !Array.isArray(phrases) || phrases.length === 0) {
-                console.warn('[getCategoryPhrases] Invalid category or empty phrases for:', category);
-                return categoryPhrases.generic || ['Keep going! ⚡'];
+                                return categoryPhrases.generic || ['Keep going! ⚡'];
             }
             return phrases;
         }
@@ -6181,8 +6177,7 @@ input:checked + .toggle-slider:before {
             const phrases = getCategoryPhrases(category);
             // Extra safety: validate phrases array
             if (!phrases || phrases.length === 0) {
-                console.warn('[getRandomPhrase] No phrases available for category:', category);
-                return 'Keep going! ⚡';
+                                return 'Keep going! ⚡';
             }
             return phrases[Math.floor(Math.random() * phrases.length)];
         }
@@ -6190,8 +6185,7 @@ input:checked + .toggle-slider:before {
         function showCategoryTooltip(category) {
             const tooltip = document.getElementById('taskPalTooltip');
             if (!tooltip) {
-                console.warn('[showCategoryTooltip] Tooltip element not found');
-                return;
+                                return;
             }
             const message = getRandomPhrase(category);
             tooltip.textContent = message.trim();
@@ -6365,8 +6359,7 @@ input:checked + .toggle-slider:before {
             
             // Validate that phrases exist for this mood
             if (!phrases || !Array.isArray(phrases) || phrases.length === 0) {
-                console.warn('[getRandomMoodPhrase] No phrases found for personality:', personality, 'mood:', mood);
-                return 'Keep going! 💪';
+                                return 'Keep going! 💪';
             }
             
             let availablePhrases = phrases.filter(p => !phraseHistory[personality][mood].includes(p));
@@ -7462,8 +7455,7 @@ input:checked + .toggle-slider:before {
                 // to ensure DOM elements are fully ready
                 if (window.gameState?.equippedSkinId) {
                     setTimeout(() => {
-                        console.log('[InitializeApp] Force updating skin visuals after delay');
-                        window.skinsManager.updateAllMonsterVisuals();
+                                                window.skinsManager.updateAllMonsterVisuals();
                     }, 100);
                 }
             }
@@ -7548,13 +7540,11 @@ input:checked + .toggle-slider:before {
         function updateTasksDisplay() {
             const tasksList = document.getElementById('tasksList');
             if (!tasksList) {
-                console.warn('📝 tasksList element not found!');
-                return;
+                                return;
             }
             
             const activeTasks = gameState.tasks.filter(task => !task.completed);
-            console.log('📝 Updating tasks display. Total tasks:', gameState.tasks.length, 'Active tasks:', activeTasks.length);
-            
+                        
             if (activeTasks.length === 0) {
                 tasksList.innerHTML = `
                     <div class="empty-state">
@@ -7640,21 +7630,14 @@ input:checked + .toggle-slider:before {
 
         // Challenge Progress Tracking System
         function updateChallengeProgress(task, isQuickTask = false) {
-            console.log('📊 updateChallengeProgress called:', {
-                task,
-                isQuickTask,
-                hasChallenge: !!gameState.dailyChallenge,
-                completed: gameState.dailyChallengeCompleted
-            });
-            
+                        
             if (!gameState.dailyChallenge || gameState.dailyChallengeCompleted) {
                 return;
             }
 
             const challenge = gameState.dailyChallenge;
             const challengeDesc = (challenge.desc || '').toLowerCase();
-            console.log('🎯 Challenge desc:', challengeDesc);
-            
+                        
             // Special case: Rest day challenge (no tasks required)
             if (challengeDesc.includes('take a break') || challengeDesc.includes('no tasks required')) {
                 // This challenge is auto-completed at generation
@@ -7703,15 +7686,7 @@ input:checked + .toggle-slider:before {
                 const isHighPriorityChallenge = challengeDesc.includes('high-priority') || challengeDesc.includes('high priority');
                 const isLowPriorityChallenge = challengeDesc.includes('low-priority') || challengeDesc.includes('low priority');
                 
-                console.log('🎯 Priority check:', {
-                    challengeDesc,
-                    rawPriority: task.priority,
-                    taskPriority,
-                    isHighPriorityChallenge,
-                    isLowPriorityChallenge,
-                    willMatch: (isHighPriorityChallenge && taskPriority === 'high') || (isLowPriorityChallenge && taskPriority === 'low')
-                });
-                
+                                
                 if ((isHighPriorityChallenge && taskPriority === 'high') ||
                     (isLowPriorityChallenge && taskPriority === 'low')) {
                     shouldIncrement = true;
@@ -7772,14 +7747,8 @@ input:checked + .toggle-slider:before {
             // Only increment if criteria is met
             if (shouldIncrement) {
                 challenge.progress++;
-                console.log('✅ Challenge progress incremented!', {
-                    progress: challenge.progress,
-                    target: challenge.target,
-                    challengeDesc
-                });
-            } else {
-                console.log('❌ Challenge criteria not met for this task');
-            }
+                            } else {
+                            }
             
             // Check if challenge is completed
             if (challenge.progress >= challenge.target && !gameState.dailyChallengeCompleted) {
@@ -7788,8 +7757,7 @@ input:checked + .toggle-slider:before {
                 
                 // CRITICAL FIX: Award XP and XP Coins for daily challenge completion
                 addJerryXP(challenge.reward); // Adds to jerryXP (XP Coins) and triggers level-up check
-                console.log(`✅ Daily Challenge Complete! +${challenge.reward} XP and XP Coins awarded`);
-                
+                                
                 // Track challenge completion for achievements
                 if (window.achievementTracker) {
                     window.achievementTracker.trackChallengeComplete();
@@ -8342,8 +8310,7 @@ input:checked + .toggle-slider:before {
                 
                 // Save gameState to persist color change
                 saveGameState();
-                console.log('🎨 New daily challenge generated with color:', CARD_COLORS[cardColorIndex]);
-            } else if (!gameState.dailyChallenge || !gameState.dailyChallenge.color) {
+                            } else if (!gameState.dailyChallenge || !gameState.dailyChallenge.color) {
                 // Load existing challenge from localStorage or fix missing color
                 const challengeDesc = DAILY_CHALLENGES[challengeIndex];
                 const existingProgress = gameState.dailyChallenge?.progress || 0;
@@ -8873,8 +8840,7 @@ input:checked + .toggle-slider:before {
                     gameState.totalFocusMinutes++;
                     saveGameState();
                     showXPGainAnimation();
-                    console.log(`⏱️ Focus Timer: +1 XP awarded (${focusXPAwarded} minutes elapsed, total: ${gameState.totalFocusMinutes})`);
-                }
+                                    }
 
                 if (focusRemaining <= 0) {
                     stopFocusTimer(true);
@@ -8942,8 +8908,7 @@ input:checked + .toggle-slider:before {
                     gameState.totalFocusMinutes++;
                     saveGameState();
                     showXPGainAnimation();
-                    console.log(`⏱️ Focus Timer: +1 XP awarded (${focusXPAwarded} minutes elapsed, total: ${gameState.totalFocusMinutes})`);
-                }
+                                    }
 
                 if (focusRemaining <= 0) {
                     stopFocusTimer(true);
@@ -9068,16 +9033,14 @@ input:checked + .toggle-slider:before {
                 if (document.hidden) {
                     // App is being closed/hidden - pause the timer if active
                     if (focusActive && !focusPaused) {
-                        console.log('⏱️ Focus Timer: App hidden - pausing timer');
-                        pauseFocusTimer();
+                                                pauseFocusTimer();
                         // Mark that we auto-paused so we can auto-resume
                         window.focusTimerAutoPaused = true;
                     }
                 } else {
                     // App is being reopened - resume if we auto-paused
                     if (focusActive && focusPaused && window.focusTimerAutoPaused) {
-                        console.log('⏱️ Focus Timer: App visible - resuming timer');
-                        resumeFocusTimer();
+                                                resumeFocusTimer();
                         window.focusTimerAutoPaused = false;
                     }
                 }
@@ -9217,14 +9180,12 @@ input:checked + .toggle-slider:before {
         
         // Update themes display
         function updateThemesDisplay() {
-            console.log('updateThemesDisplay called, jerryXP:', gameState.jerryXP);
-            
+                        
             // Update XP Coins display
             const xpCoinsDisplay = document.getElementById('xpCoinsThemes');
             if (xpCoinsDisplay) {
                 xpCoinsDisplay.textContent = gameState.jerryXP || 0;
-                console.log('Set xpCoinsThemes to:', gameState.jerryXP);
-            }
+                            }
             
             // Define available themes
             const themes = [
@@ -9939,12 +9900,7 @@ input:checked + .toggle-slider:before {
                 // This ensures we read the same HP value that's shown to the user
                 const currentHP = gameState.health || 75;
                 
-                console.log('Potion Debug - Before:', {
-                    currentHP: currentHP,
-                    healthType: typeof gameState.health,
-                    healthValue: gameState.health
-                });
-                
+                                
                 if (currentHP >= maxHP) {
                     alert('💚 Your monster is already at full health!');
                     return;
@@ -9962,13 +9918,7 @@ input:checked + .toggle-slider:before {
                 const newHP = Math.min(maxHP, currentHP + healAmount);
                 const actualHealed = newHP - currentHP;
                 
-                console.log('Potion Debug - Calculation:', {
-                    healAmount: healAmount,
-                    currentHP: currentHP,
-                    newHP: newHP,
-                    actualHealed: actualHealed
-                });
-                
+                                
                 // Set new health as a number (ensure it's never 0 unless actually dead)
                 gameState.health = Number(newHP);
                 
@@ -9977,11 +9927,7 @@ input:checked + .toggle-slider:before {
                     gameState.health = newHP;
                 }
                 
-                console.log('Potion Debug - After:', {
-                    newHealth: gameState.health,
-                    healthType: typeof gameState.health
-                });
-                
+                                
                 // Save immediately to persist the heal
                 saveGameState();
                 
@@ -10223,8 +10169,7 @@ input:checked + .toggle-slider:before {
         
         function createNextRecurringTask(task) {
             if (!task.dueDate) {
-                console.warn('Cannot create recurring task without due date');
-                return null;
+                                return null;
             }
             
             const currentDueDate = new Date(task.dueDate);
@@ -10232,8 +10177,7 @@ input:checked + .toggle-slider:before {
             
             // Don't create next occurrence if paused
             if (task.recurringPaused) {
-                console.log('⏸️ Recurring task is paused, not creating next occurrence');
-                return null;
+                                return null;
             }
             
             // Calculate next occurrence based on frequency
@@ -10262,8 +10206,7 @@ input:checked + .toggle-slider:before {
                         nextDueDate.setMonth(nextDueDate.getMonth() + 1);
                         break;
                     default:
-                        console.warn('Unknown recurring frequency:', task.recurringFrequency);
-                        return null;
+                                                return null;
                 }
             }
             
@@ -10392,8 +10335,7 @@ input:checked + .toggle-slider:before {
         function toggleSubtaskCompletion(subtaskId) {
             // Subtasks in Create Task modal cannot be completed - they're just being added
             // This function is kept for compatibility but does nothing in the modal
-            console.log('toggleSubtaskCompletion called but disabled in Create Task modal');
-        }
+                    }
         
         function loadSubtasksToModal(subtasks) {
             if (!subtasks || subtasks.length === 0) {
@@ -10518,14 +10460,11 @@ input:checked + .toggle-slider:before {
                 
                 if (editingTaskIndex !== null) {
                     gameState.tasks[editingTaskIndex] = task;
-                    console.log('📝 Task updated:', task);
-                    showSuccessMessage('Task updated successfully!');
+                                        showSuccessMessage('Task updated successfully!');
                 } else {
                     gameState.tasks.push(task);
                     gameState.totalTasksCreated += 1;
-                    console.log('📝 New task created:', task);
-                    console.log('📝 Total tasks now:', gameState.tasks.length);
-                    showSuccessMessage('Task created successfully!');
+                                                            showSuccessMessage('Task created successfully!');
                 }
                 
             // Schedule notifications for the new/updated task
@@ -10550,8 +10489,7 @@ input:checked + .toggle-slider:before {
             
             // Stop focus timer when any task is completed
             if (focusActive) {
-                console.log('⏱️ Focus Timer: Task completed - stopping timer');
-                stopFocusTimer(false);
+                                stopFocusTimer(false);
                 showSuccessMessage('⏱️ Focus Timer stopped', 'Task completed!');
             }
             
@@ -10587,8 +10525,7 @@ input:checked + .toggle-slider:before {
             // CRITICAL: Only apply to reverted eggs (level 5+), NOT new eggs (level 1-4)
             if (gameState.isEgg && gameState.jerryLevel >= 5 && oldHealth < 50 && gameState.health >= 50) {
                 gameState.isEgg = false;
-                console.log('[Re-hatching] Egg hatched after reaching 50 HP!');
-                
+                                
                 // SKIN SYNC FIX: Check if skin is equipped before loading default sprite
                 const equippedSkinId = gameState.equippedSkinId;
                 
@@ -10610,12 +10547,10 @@ input:checked + .toggle-slider:before {
                         mainHeroSprite.style.maxWidth = '';
                         mainHeroSprite.style.maxHeight = '';
                         mainHeroSprite.style.transform = 'scale(2)';
-                        console.log('[Hatching] Applied sprite animation styles to mainHeroSprite');
-                    }
+                                            }
                 } else {
                     // Skin is equipped, let skinsManager handle it
-                    console.log('[Hatching] Skin equipped:', equippedSkinId, '- triggering skinsManager update');
-                    if (window.skinsManager) {
+                                        if (window.skinsManager) {
                         window.skinsManager.updateAllMonsterVisuals();
                     }
                 }
@@ -10682,14 +10617,7 @@ input:checked + .toggle-slider:before {
             gameState.tasks.splice(index, 1);
             
             // Update daily challenge progress
-            console.log('🎯 Calling updateChallengeProgress with task:', {
-                title: task.title,
-                category: task.category,
-                difficulty: task.difficulty,
-                priority: task.priority,
-                isQuickTask: false
-            });
-            updateChallengeProgress(task, false);
+                        updateChallengeProgress(task, false);
             
             // Show completion message with random variation
             const randomMsg = getRandomCompletionMessage(false);
@@ -10708,11 +10636,9 @@ input:checked + .toggle-slider:before {
             checkAndUpdateEnergy();
             
             // Refresh background to preserve custom theme
-            console.log('[Theme Debug] Active theme before refresh:', gameState.activeTheme);
-            if (typeof window.refreshBackground === 'function') {
+                        if (typeof window.refreshBackground === 'function') {
                 window.refreshBackground();
-                console.log('[Theme Debug] refreshBackground called after task completion');
-            }
+                            }
             
             updateUI();
             updateTasksDisplay();
@@ -10723,20 +10649,17 @@ input:checked + .toggle-slider:before {
                 if (isQuestTask) {
                     // Play quest complete sound for quest giver tasks
                     window.audioManager.playSound('questComplete', 0.7);
-                    console.log('🎯 Quest task completed, playing quest complete sound...');
-
+                    
                 } else {
                     window.audioManager.playSound('taskComplete', 0.7);
                 }
             }
             
             // Fire confetti
-            console.log('🎯 Regular task completed, firing confetti...');
-            if (window.fireConfetti) {
+                        if (window.fireConfetti) {
                 window.fireConfetti();
             } else {
-                console.warn('Confetti function not available');
-            }
+                            }
             
             // Trigger dialogue system (30% chance)
             if (typeof MoodDialogueSystem !== 'undefined' && MoodDialogueSystem.showDialogue) {
@@ -11548,8 +11471,7 @@ input:checked + .toggle-slider:before {
             
             // Stop focus timer when any task is completed
             if (focusActive) {
-                console.log('⏱️ Focus Timer: Recurring task completed - stopping timer');
-                stopFocusTimer(false);
+                                stopFocusTimer(false);
             }
             
             // Clear notifications for this task
@@ -11618,12 +11540,9 @@ input:checked + .toggle-slider:before {
                     completed: false,
                     createdAt: new Date().toISOString()
                 }));
-                console.log('🔄 Subtasks reset to incomplete for next occurrence');
-            }
+                            }
             
-            console.log('🔁 Recurring task updated in place. Next due:', nextDueDate.toLocaleDateString());
-            console.log('📊 Completion count:', task.recurringCompletionCount);
-            
+                                    
             saveGameState();
             updateUI();
             updateTasksDisplay();
@@ -11676,8 +11595,7 @@ input:checked + .toggle-slider:before {
             
             // Stop focus timer when any task is completed
             if (focusActive) {
-                console.log('⏱️ Focus Timer: Recurring task permanently completed - stopping timer');
-                stopFocusTimer(false);
+                                stopFocusTimer(false);
                 showSuccessMessage('⏱️ Focus Timer stopped', 'Task completed!');
             }
             
@@ -11813,8 +11731,7 @@ input:checked + .toggle-slider:before {
             
             // Stop focus timer when any task is completed
             if (focusActive) {
-                console.log('⏱️ Focus Timer: Quick task completed - stopping timer');
-                stopFocusTimer(false);
+                                stopFocusTimer(false);
             }
             
             // Track today's completions
@@ -11841,8 +11758,7 @@ input:checked + .toggle-slider:before {
             // CRITICAL: Only apply to reverted eggs (level 5+), NOT new eggs (level 1-4)
             if (gameState.isEgg && gameState.jerryLevel >= 5 && oldHealth < 50 && gameState.health >= 50) {
                 gameState.isEgg = false;
-                console.log('[Re-hatching] Egg hatched after reaching 50 HP!');
-                
+                                
                 // SKIN SYNC FIX: Check if skin is equipped before loading default sprite
                 const equippedSkinId = gameState.equippedSkinId;
                 
@@ -11864,12 +11780,10 @@ input:checked + .toggle-slider:before {
                         mainHeroSprite.style.maxWidth = '';
                         mainHeroSprite.style.maxHeight = '';
                         mainHeroSprite.style.transform = 'scale(2)';
-                        console.log('[Hatching] Applied sprite animation styles to mainHeroSprite');
-                    }
+                                            }
                 } else {
                     // Skin is equipped, let skinsManager handle it
-                    console.log('[Hatching] Skin equipped:', equippedSkinId, '- triggering skinsManager update');
-                    if (window.skinsManager) {
+                                        if (window.skinsManager) {
                         window.skinsManager.updateAllMonsterVisuals();
                     }
                 }
@@ -11952,11 +11866,9 @@ input:checked + .toggle-slider:before {
             checkAndUpdateEnergy();
             
             // Refresh background to preserve custom theme
-            console.log('[Theme Debug] Active theme before refresh:', gameState.activeTheme);
-            if (typeof window.refreshBackground === 'function') {
+                        if (typeof window.refreshBackground === 'function') {
                 window.refreshBackground();
-                console.log('[Theme Debug] refreshBackground called after task completion');
-            }
+                            }
             
             updateUI();
             updateTasksDisplay();
@@ -11968,12 +11880,10 @@ input:checked + .toggle-slider:before {
             }
             
             // Fire confetti
-            console.log('⚡ Quick task completed, firing confetti...');
-            if (window.fireConfetti) {
+                        if (window.fireConfetti) {
                 window.fireConfetti();
             } else {
-                console.warn('Confetti function not available');
-            }
+                            }
             
             // Trigger quest giver after quick task completion
             setTimeout(() => {
@@ -12062,29 +11972,24 @@ input:checked + .toggle-slider:before {
             // Calculate next level threshold with exponential curve
             gameState.jerryXPToNext = Math.floor(100 * Math.pow(1.2, gameState.jerryLevel - 1));
             
-            console.log(`🎉 Level Up! Level ${gameState.jerryLevel}, Next threshold: ${gameState.jerryXPToNext}`);
-            console.log(`XP Coins: ${gameState.jerryXP}, Current XP: ${gameState.jerryCurrentXP}`);
-            
+                                    
             // Full heal on level up (scaled to new maxHP based on level)
             const baseHP = 100;
             const hpPerLevel = 10;
             const newMaxHP = baseHP + (gameState.jerryLevel * hpPerLevel);
             gameState.health = newMaxHP;
             
-            console.log(`📊 Level up! HP fully restored to ${newMaxHP} (Level ${gameState.jerryLevel})`);
-            
+                        
             // Check if egg should hatch at Level 5
             if (gameState.jerryLevel === 5 && gameState.isEgg) {
                 gameState.isEgg = false;
-                console.log('[Hatching] Monster hatched at Level 5!');
-                
+                                
                 // Battle mode is disabled in this version
                 
                 // Play victory sound for hatching celebration
                 if (window.audioManager && window.audioManager.playSound) {
                     window.audioManager.playSound('levelUp', 0.8);
-                    console.log('[Hatching] Playing victory sound!');
-                }
+                                    }
                 
                 // Fire confetti for celebration
                 if (window.fireConfetti) {
@@ -12118,12 +12023,10 @@ input:checked + .toggle-slider:before {
                         mainHeroSprite.style.maxWidth = '';
                         mainHeroSprite.style.maxHeight = '';
                         mainHeroSprite.style.transform = 'scale(2)';
-                        console.log('[Hatching] Applied sprite animation styles to mainHeroSprite');
-                    }
+                                            }
                 } else {
                     // Skin is equipped, let skinsManager handle it
-                    console.log('[Hatching] Skin equipped:', equippedSkinId, '- triggering skinsManager update');
-                    if (window.skinsManager) {
+                                        if (window.skinsManager) {
                         window.skinsManager.updateAllMonsterVisuals();
                     }
                 }
@@ -12258,12 +12161,10 @@ input:checked + .toggle-slider:before {
                         text: 'Check out Task Rock on Etsy!',
                         url: etsyUrl
                     });
-                    console.log('✅ Shared successfully');
-                } catch (err) {
+                                    } catch (err) {
                     // User cancelled or error occurred
                     if (err.name !== 'AbortError') {
-                        console.log('Share failed:', err);
-                        fallbackCopyToClipboard(etsyUrl);
+                                                fallbackCopyToClipboard(etsyUrl);
                     }
                 }
             } else {
@@ -12277,15 +12178,13 @@ input:checked + .toggle-slider:before {
             
             // Open store in new tab
             window.open(productivityOutletUrl, '_blank');
-            console.log('✅ Opening Productivity Outlet store');
-        }
+                    }
         
         function fallbackCopyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 showSuccessMessage('Etsy store link copied to clipboard!');
             }).catch(err => {
-                console.error('Copy failed:', err);
-                showSuccessMessage('Visit: ' + text);
+                                showSuccessMessage('Visit: ' + text);
             });
         }
 
@@ -12304,14 +12203,12 @@ input:checked + .toggle-slider:before {
             
             // CRITICAL FIX: Auto-pause focus timer when navigating away from home tab
             if (tabName !== 'home' && typeof focusActive !== 'undefined' && focusActive && !focusPaused) {
-                console.log('⏱️ Focus Timer: Navigating away from home - auto-pausing timer');
-                pauseFocusTimer();
+                                pauseFocusTimer();
                 window.focusTimerAutoPausedByNav = true;
             }
             // Auto-resume if returning to home and was auto-paused by navigation
             if (tabName === 'home' && window.focusTimerAutoPausedByNav && focusPaused) {
-                console.log('⏱️ Focus Timer: Returning to home - auto-resuming timer');
-                resumeFocusTimer();
+                                resumeFocusTimer();
                 window.focusTimerAutoPausedByNav = false;
             }
             
@@ -12347,12 +12244,10 @@ input:checked + .toggle-slider:before {
             
             // Initialize mood history filters when opening habits tab
             if (tabName === 'habits') {
-                console.log('[Tabs] Opening habits tab - initializing mood filters');
-                if (typeof window.initHabitMoodFilters === 'function') {
+                                if (typeof window.initHabitMoodFilters === 'function') {
                     window.initHabitMoodFilters();
                 } else {
-                    console.warn('[Tabs] initHabitMoodFilters not found');
-                }
+                                    }
             }
         }
 
@@ -12558,8 +12453,7 @@ input:checked + .toggle-slider:before {
                 setTimeout(() => modalOverlay.remove(), 300);
             });
             
-            console.log('[Hatching] Celebration modal displayed!');
-        }
+                    }
 
         function showSuccessMessage(message, subtitle = '') {
             const successDiv = document.createElement('div');
@@ -12641,8 +12535,7 @@ input:checked + .toggle-slider:before {
             }
 
             window.fireConfetti = function() {
-                console.log('🎉 Confetti fired! Particles before:', particles.length);
-                const centerX = window.innerWidth / 2;
+                                const centerX = window.innerWidth / 2;
                 const centerY = window.innerHeight / 2;
                 
                 for (let i = 0; i < 50; i++) {
@@ -12652,15 +12545,12 @@ input:checked + .toggle-slider:before {
                     ));
                 }
                 
-                console.log('🎉 Confetti particles after:', particles.length);
-                
+                                
                 // Always start animation, even if one is already running
                 if (!animationFrame) {
-                    console.log('🎉 Starting new confetti animation');
-                    render();
+                                        render();
                 } else {
-                    console.log('🎉 Animation already running, particles added');
-                }
+                                    }
             };
         }
 
@@ -12697,16 +12587,14 @@ input:checked + .toggle-slider:before {
                         localStorage.removeItem(key);
                     }
                 });
-                console.log('[AppReset] Fresh install detected - localStorage cleared');
-            }
+                            }
             
             try {
                 // Use the app initializer for proper sequencing
                 if (window.appInitializer) {
                     window.appInitializer.initialize();
                 } else {
-                    console.error('[AppInit] App initializer not loaded - using fallback');
-                    // Fallback to basic initialization
+                                        // Fallback to basic initialization
                     loadGameState();
                     document.documentElement.style.visibility = 'visible';
                     generateDailyChallenge();
@@ -12729,10 +12617,8 @@ input:checked + .toggle-slider:before {
                 // Initialize audio manager
                 if (window.audioManager) {
                     window.audioManager.loadAllSounds().then(() => {
-                        console.log('🔊 Audio system initialized');
-                    }).catch(err => {
-                        console.warn('Audio loading failed:', err);
-                    });
+                                            }).catch(err => {
+                                            });
                 }
                 
                 // Initialize confetti system
@@ -12752,10 +12638,8 @@ input:checked + .toggle-slider:before {
                 // CRITICAL FIX: Instantiate subtasksManager
                 if (typeof SubtasksManager !== 'undefined') {
                     window.subtasksManager = new SubtasksManager();
-                    console.log('[Init] subtasksManager instantiated');
-                } else {
-                    console.error('[Init] SubtasksManager class not found!');
-                }
+                                    } else {
+                                    }
                 
                 // Reschedule notifications for all tasks on app load
                 if (gameState.notifications) {
@@ -12839,8 +12723,7 @@ input:checked + .toggle-slider:before {
                     }
                 }, 100);
             } catch (error) {
-                console.error('Initialization error:', error);
-            }
+                            }
             
             // Always hide loading screen regardless of errors
             setTimeout(() => {
@@ -12996,39 +12879,30 @@ input:checked + .toggle-slider:before {
     
     function checkOnboardingStatus() {
         const hasChosen = localStorage.getItem('hasChosenMonster');
-        console.log('Checking onboarding status. hasChosenMonster:', hasChosen);
-        
+                
         const overlay = document.getElementById('onboardingOverlay');
         
         if (!overlay) {
-            console.error('Onboarding overlay not found!');
-            return;
+                        return;
         }
         
         if (!hasChosen || hasChosen !== 'true') {
-            console.log('Onboarding needed. Waiting for page load...');
-            
+                        
             // Function to show onboarding
             const showOnboarding = () => {
-                console.log('Attempting to show onboarding...');
-                setTimeout(() => {
+                                setTimeout(() => {
                     overlay.classList.remove('hidden');
-                    console.log('Onboarding overlay displayed!');
-                    console.log('Overlay classes:', overlay.className);
-                }, 3100); // Wait for loading screen to finish (3000ms + 100ms buffer)
+                                                        }, 3100); // Wait for loading screen to finish (3000ms + 100ms buffer)
             };
             
             // Try multiple approaches to ensure it works
             if (document.readyState === 'complete') {
-                console.log('Document already loaded, showing onboarding immediately');
-                showOnboarding();
+                                showOnboarding();
             } else {
-                console.log('Waiting for window load event...');
-                window.addEventListener('load', showOnboarding);
+                                window.addEventListener('load', showOnboarding);
             }
         } else {
-            console.log('User has already chosen a monster. Skipping onboarding.');
-        }
+                    }
     }
     
     function selectMonster(monsterId) {
@@ -13141,8 +13015,7 @@ input:checked + .toggle-slider:before {
     }
     
     function completeOnboarding() {
-        console.log('[Onboarding] Completing onboarding with selectedMonster:', selectedMonster);
-        
+                
         // Save to localStorage
         localStorage.setItem('onboardingCompleted', 'true');
         localStorage.setItem('onboardingComplete', 'true'); // For mood tracker timing
@@ -13151,25 +13024,21 @@ input:checked + .toggle-slider:before {
         localStorage.setItem('monsterName', monsterName);
         localStorage.setItem('rockName', monsterName);
         
-        console.log('[Onboarding] Saved to localStorage - selectedMonster:', selectedMonster);
-        
+                
         // Initialize new player at Level 1 with egg state
-       : Comment out level reset to preserve level 10 start
-        // if (!gameState.level) {
-        //     gameState.level = 1;
-        //     gameState.jerryLevel = 1;
-        //     gameState.jerryCurrentXP = 0;
-        //     gameState.jerryTotalXP = 0;
-        // }
+        if (!gameState.level) {
+            gameState.level = 1;
+            gameState.jerryLevel = 1;
+            gameState.jerryCurrentXP = 0;
+            gameState.jerryTotalXP = 0;
+        }
         
         // New players start with egg (hatches at level 5)
-       : Keep egg hatched at level 10
         gameState.isEgg = true; // Start as egg
         gameState.consecutiveLosses = 0;
         gameState.eggRevertedAt = null;
         
-        console.log('[Onboarding] Initialized new player: Level 1, isEgg = true');
-        
+                
         // Update hero sprites based on selection
         updateHeroSprites();
         
@@ -13194,10 +13063,8 @@ input:checked + .toggle-slider:before {
         };
         
         const prefix = spriteMap[selectedMonster];
-        console.log('[Onboarding] updateHeroSprites - selectedMonster:', selectedMonster, '-> prefix:', prefix);
-        localStorage.setItem('heroSpritePrefix', prefix);
-        console.log('[Onboarding] Saved heroSpritePrefix to localStorage:', prefix);
-    }
+                localStorage.setItem('heroSpritePrefix', prefix);
+            }
     
     function updateHeroName() {
         const levelLabel = document.getElementById('levelLabel');

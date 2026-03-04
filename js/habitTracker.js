@@ -78,8 +78,7 @@ function trackTaskCompletion(task, isQuickTask = false) {
             gameState.habitStats.quickTaskCategories[task.categoryId]++;
 
         } else {
-            console.warn('📊 [Habit Tracker] Quick task category not found or undefined:', task.categoryId);
-        }
+                    }
     } else {
         // Track regular task
         gameState.habitStats.totalTasks++;

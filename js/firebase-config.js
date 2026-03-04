@@ -24,8 +24,7 @@ async function initializeFirebase() {
     try {
         // Check if Firebase is already loaded
         if (typeof firebase === 'undefined') {
-            console.error('[Firebase] Firebase SDK not loaded');
-            return false;
+                        return false;
         }
 
         // Initialize Firebase app
@@ -42,12 +41,10 @@ async function initializeFirebase() {
 
             return true;
         } else {
-            console.warn('[Firebase] Messaging not supported in this browser');
-            return false;
+                        return false;
         }
     } catch (error) {
-        console.error('[Firebase] Initialization error:', error);
-        return false;
+                return false;
     }
 }
 
@@ -58,8 +55,7 @@ async function requestNotificationPermission() {
     try {
         // Check if notifications are supported
         if (!('Notification' in window)) {
-            console.warn('[Notifications] Not supported in this browser');
-            return null;
+                        return null;
         }
 
         // Request permission
@@ -80,12 +76,10 @@ async function requestNotificationPermission() {
                 return token;
             }
         } else {
-            console.warn('[Notifications] Permission denied');
-            return null;
+                        return null;
         }
     } catch (error) {
-        console.error('[Notifications] Permission error:', error);
-        return null;
+                return null;
     }
 }
 
@@ -96,13 +90,11 @@ function sendLocalNotification(title, body, icon = 'assets/Pink_Monster_idle.gif
     try {
         // Check if notifications are supported and permitted
         if (!('Notification' in window)) {
-            console.warn('[Notifications] Not supported');
-            return false;
+                        return false;
         }
 
         if (Notification.permission !== 'granted') {
-            console.warn('[Notifications] Permission not granted');
-            return false;
+                        return false;
         }
 
         // Create notification
@@ -128,8 +120,7 @@ function sendLocalNotification(title, body, icon = 'assets/Pink_Monster_idle.gif
 
         return true;
     } catch (error) {
-        console.error('[Notifications] Error sending local notification:', error);
-        return false;
+                return false;
     }
 }
 

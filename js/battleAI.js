@@ -519,8 +519,7 @@ class BattleAI {
         
         // Check if ability is on cooldown
         if (enemy.abilityCooldowns[ability.name] > 0) {
-            console.warn('Ability on cooldown:', ability.name);
-            this.performAttack({});
+                        this.performAttack({});
             return;
         }
         

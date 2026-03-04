@@ -543,8 +543,7 @@ function playWakeUpSequence(enemy, callback) {
     return new Promise((resolve) => {
         const spriteElement = document.getElementById('enemySprite');
         if (!spriteElement || !enemy) {
-            console.warn('[WakeUp] Sprite element or enemy not found');
-            if (callback) callback();
+                        if (callback) callback();
             resolve();
             return;
         }
@@ -569,8 +568,7 @@ function playWakeUpSequence(enemy, callback) {
                 spriteElement.src = enemy.currentSprite;
 
             } else {
-                console.warn('[WakeUp] No idle sprite found for enemy:', enemy.name);
-            }
+                            }
             if (callback) callback();
             resolve();
         }

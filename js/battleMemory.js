@@ -297,8 +297,7 @@ class EnemyMemorySystem {
         try {
             localStorage.setItem('enemyMemories', JSON.stringify(this.memories));
         } catch (e) {
-            console.error('Failed to save enemy memories:', e);
-        }
+                    }
     }
     
     load() {
@@ -308,8 +307,7 @@ class EnemyMemorySystem {
                 this.memories = JSON.parse(data);
             }
         } catch (e) {
-            console.error('Failed to load enemy memories:', e);
-            this.memories = {};
+                        this.memories = {};
         }
     }
     

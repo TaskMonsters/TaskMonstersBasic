@@ -14,8 +14,7 @@ class QuestTaskManager {
             const stored = localStorage.getItem('questTasks');
             return stored ? JSON.parse(stored) : [];
         } catch (error) {
-            console.error('Error loading quest tasks:', error);
-            return [];
+                        return [];
         }
     }
 
@@ -24,8 +23,7 @@ class QuestTaskManager {
         try {
             localStorage.setItem('questTasks', JSON.stringify(this.questTasks));
         } catch (error) {
-            console.error('Error saving quest tasks:', error);
-        }
+                    }
     }
 
     // Add a new quest task
@@ -64,15 +62,13 @@ class QuestTaskManager {
         if (window.fireConfetti) {
             window.fireConfetti();
         } else {
-            console.warn('Confetti function not available');
-        }
+                    }
         
         // Award XP using the proper function
         if (typeof window.addJerryXP === 'function') {
             window.addJerryXP(task.xp);
         } else {
-            console.error('addJerryXP function not found!');
-        }
+                    }
 
         // Remove from quest tasks
         this.questTasks = this.questTasks.filter(t => t.id !== taskId);

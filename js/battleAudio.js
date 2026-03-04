@@ -66,8 +66,7 @@ class BattleAudioManager {
         
         // Play
         this.currentMusic.play().catch(err => {
-            console.warn('Failed to play battle music:', err);
-        });
+                    });
 
     }
     
@@ -110,8 +109,7 @@ class BattleAudioManager {
     resumeMainMusic() {
         if (this.mainMusic) {
             this.mainMusic.play().catch(err => {
-                console.warn('Failed to resume main music:', err);
-            });
+                            });
         }
     }
     
@@ -121,8 +119,7 @@ class BattleAudioManager {
     playSound(soundId) {
         const soundFile = this.soundEffects[soundId];
         if (!soundFile) {
-            console.warn('Sound not found:', soundId);
-            return;
+                        return;
         }
         
         // Create or get cached sound
@@ -144,8 +141,7 @@ class BattleAudioManager {
         soundClone.volume = this.sfxVolume;
         
         soundClone.play().catch(err => {
-            console.warn(`Failed to play sound ${soundId}:`, err);
-        });
+                    });
     }
     
     /**
@@ -195,8 +191,7 @@ class BattleAudioManager {
                 sfxVolume: this.sfxVolume
             }));
         } catch (e) {
-            console.error('Failed to save audio settings:', e);
-        }
+                    }
     }
     
     loadSettings() {
@@ -208,8 +203,7 @@ class BattleAudioManager {
                 this.sfxVolume = settings.sfxVolume || 0.7;
             }
         } catch (e) {
-            console.error('Failed to load audio settings:', e);
-        }
+                    }
     }
     
     /**

@@ -118,8 +118,7 @@ class AudioManager {
             this.initialized = true;
 
         } catch (error) {
-            console.warn("[AudioManager] Initialization skipped:", error.message);
-        }
+                    }
     }
 
     /**
@@ -156,12 +155,10 @@ class AudioManager {
 
             // Play asynchronously
             soundInstance.play().catch((err) => {
-                console.warn(`[AudioManager] Sound playback failed for ${soundId}:`, err.message);
-                this.activeSounds.delete(soundInstance);
+                                this.activeSounds.delete(soundInstance);
             });
         } catch (error) {
-            console.warn(`[AudioManager] Error playing sound ${soundId}:`, error.message);
-        }
+                    }
     }
 
     /**
@@ -184,8 +181,7 @@ class AudioManager {
                 this.battleMusicAudio.currentTime = 0;
                 this.battleMusicAudio = null;
             } catch (error) {
-                console.warn("[AudioManager] Error stopping battle music:", error.message);
-            }
+                            }
         }
     }
 
@@ -205,8 +201,7 @@ class AudioManager {
         try {
             const trackPath = this.getNextBattleTrack();
             if (!trackPath) {
-                console.warn("[AudioManager] No battle tracks available");
-                return;
+                                return;
             }
             
             this.battleMusicAudio = new Audio(trackPath);
@@ -214,13 +209,11 @@ class AudioManager {
             this.battleMusicAudio.loop = true;
 
             this.battleMusicAudio.play().catch((err) => {
-                console.warn("[AudioManager] Battle music playback failed:", err.message);
-                this.battleMusicAudio = null;
+                                this.battleMusicAudio = null;
             });
 
         } catch (error) {
-            console.warn("[AudioManager] Error playing battle music:", error.message);
-        }
+                    }
     }
 
     /**
@@ -243,24 +236,20 @@ class AudioManager {
 
                     this.currentMusic.currentTime = 0;
                     this.currentMusic.play().catch(err => {
-                        console.warn('[AudioManager] Quest music loop restart failed:', err.message);
-                    });
+                                            });
                 }
             });
             
             // FIX: Add error handler to prevent music from stopping on errors
             this.currentMusic.addEventListener('error', (e) => {
-                console.warn('[AudioManager] Quest music error:', e);
-            });
+                            });
 
             this.currentMusic.play().catch((err) => {
-                console.warn("[AudioManager] Quest music playback failed:", err.message);
-                this.currentMusic = null;
+                                this.currentMusic = null;
             });
 
         } catch (error) {
-            console.warn("[AudioManager] Error playing quest music:", error.message);
-        }
+                    }
     }
 
     /**
@@ -274,8 +263,7 @@ class AudioManager {
                 this.currentMusic = null;
 
             } catch (error) {
-                console.warn("[AudioManager] Error stopping quest music:", error.message);
-            }
+                            }
         }
 
         if (this.battleMusicAudio) {
@@ -285,8 +273,7 @@ class AudioManager {
                 this.battleMusicAudio = null;
 
             } catch (error) {
-                console.warn("[AudioManager] Error stopping battle music:", error.message);
-            }
+                            }
         }
 
         // Stop battle outcome music (win/loss)
@@ -309,13 +296,11 @@ class AudioManager {
             this.focusAlarmAudio.loop = true; // Loop indefinitely
 
             this.focusAlarmAudio.play().catch((err) => {
-                console.warn("[AudioManager] Focus alarm playback failed:", err.message);
-                this.focusAlarmAudio = null;
+                                this.focusAlarmAudio = null;
             });
 
         } catch (error) {
-            console.warn("[AudioManager] Error playing focus alarm:", error.message);
-        }
+                    }
     }
 
     /**
@@ -330,8 +315,7 @@ class AudioManager {
                 this.focusAlarmAudio = null;
 
             } catch (error) {
-                console.warn("[AudioManager] Error stopping focus alarm:", error.message);
-            }
+                            }
         }
     }
 
@@ -352,8 +336,7 @@ class AudioManager {
                 this.battleMusicAudio.currentTime = 0;
                 this.battleMusicAudio = null;
             } catch (error) {
-                console.warn("[AudioManager] Error stopping battle music:", error.message);
-            }
+                            }
         }
 
         try {
@@ -362,13 +345,11 @@ class AudioManager {
             this.battleWinMusic.loop = false; // Play once only
 
             this.battleWinMusic.play().catch((err) => {
-                console.warn("[AudioManager] Battle win music playback failed:", err.message);
-                this.battleWinMusic = null;
+                                this.battleWinMusic = null;
             });
 
         } catch (error) {
-            console.warn("[AudioManager] Error playing battle win music:", error.message);
-        }
+                    }
     }
 
     /**
@@ -388,8 +369,7 @@ class AudioManager {
                 this.battleMusicAudio.currentTime = 0;
                 this.battleMusicAudio = null;
             } catch (error) {
-                console.warn("[AudioManager] Error stopping battle music:", error.message);
-            }
+                            }
         }
 
         try {
@@ -398,13 +378,11 @@ class AudioManager {
             this.battleLoseMusic.loop = false; // Play once only
 
             this.battleLoseMusic.play().catch((err) => {
-                console.warn("[AudioManager] Battle lose music playback failed:", err.message);
-                this.battleLoseMusic = null;
+                                this.battleLoseMusic = null;
             });
 
         } catch (error) {
-            console.warn("[AudioManager] Error playing battle lose music:", error.message);
-        }
+                    }
     }
 
     /**
@@ -419,8 +397,7 @@ class AudioManager {
                 this.battleWinMusic = null;
 
             } catch (error) {
-                console.warn("[AudioManager] Error stopping battle win music:", error.message);
-            }
+                            }
         }
 
         if (this.battleLoseMusic) {
@@ -430,8 +407,7 @@ class AudioManager {
                 this.battleLoseMusic = null;
 
             } catch (error) {
-                console.warn("[AudioManager] Error stopping battle lose music:", error.message);
-            }
+                            }
         }
     }
 
@@ -513,8 +489,8 @@ class AudioManager {
             if (this.currentMusic) this.currentMusic.pause();
             if (this.battleMusicAudio) this.battleMusicAudio.pause();
         } else {
-            if (this.currentMusic) this.currentMusic.play().catch(err => console.warn('[AudioManager] Quest music resume failed:', err.message));
-            if (this.battleMusicAudio) this.battleMusicAudio.play().catch(err => console.warn('[AudioManager] Battle music resume failed:', err.message));
+            if (this.currentMusic) this.currentMusic.play().catch(err => );
+            if (this.battleMusicAudio) this.battleMusicAudio.play().catch(err => );
         }
     }
 }

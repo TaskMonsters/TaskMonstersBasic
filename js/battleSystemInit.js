@@ -23,8 +23,7 @@
             typeof BattleAudioManager === 'undefined' ||
             typeof BattleEffectsManager === 'undefined' ||
             typeof BattleArenasManager === 'undefined') {
-            console.error('❌ Battle system modules not loaded');
-            return;
+                        return;
         }
         
         // Initialize subsystems
@@ -52,8 +51,7 @@
             window.battleSpecialSystems = new BattleSpecialSystems(window.battleEngine);
 
         } else {
-            console.error('❌ Battle Engine not found');
-            return;
+                        return;
         }
         
         // Preload audio
@@ -161,8 +159,7 @@
         // Fight specific enemy
         fightEnemy: function(enemyId) {
             if (!BATTLE_ENEMIES[enemyId]) {
-                console.error('Enemy not found:', enemyId);
-                return;
+                                return;
             }
             
             // Temporarily override enemy selection
@@ -256,8 +253,7 @@
 // Define the missing global function to be called from index.html
 window.maybeTriggerBattle = function(taskType, taskData = {}) {
     if (!window.battleEngine || typeof window.battleEngine.checkBattleTrigger !== 'function') {
-        console.warn('⚠️ Battle trigger system not loaded or ready yet.');
-        return false; // Indicate that battle did not trigger
+                return false; // Indicate that battle did not trigger
     }
     // Delegate the trigger check to the battle engine
     return window.battleEngine.checkBattleTrigger(taskType, taskData);

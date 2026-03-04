@@ -86,8 +86,7 @@ class BattleEngine {
      */
     startBattle(difficulty, taskData = {}) {
         if (this.isActive) {
-            console.warn('Battle already in progress');
-            return;
+                        return;
         }
         
         const playerLevel = gameState?.jerryLevel || 5;
@@ -95,8 +94,7 @@ class BattleEngine {
         // Select enemy
         const availableEnemies = getAvailableEnemies(playerLevel, difficulty);
         if (availableEnemies.length === 0) {
-            console.error('No enemies available for level', playerLevel);
-            return;
+                        return;
         }
         
         // getAvailableEnemies now returns a single enemy in alternating order
@@ -902,8 +900,7 @@ class BattleEngine {
             enemySprite.dataset.enemyName = enemyConfig.name;
             enemySprite.dataset.enemyId = enemyConfig.id;
         } else {
-            console.error('[BattleEngine] Enemy sprite element not found!');
-        }
+                    }
         
         // Render initial state
         this.updateBattleUI();

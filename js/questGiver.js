@@ -390,14 +390,12 @@ class QuestGiver {
         
         const questGiverUI = document.getElementById('questGiverUI');
         if (!questGiverUI) {
-            console.error('Quest Giver UI not found');
-            return;
+                        return;
         }
 
         const encounter = this.activeQuest;
         if (!encounter) {
-            console.error('No active encounter');
-            return;
+                        return;
         }
 
         // Update UI based on type
@@ -517,8 +515,7 @@ class QuestGiver {
         if (window.questTaskManager) {
             window.questTaskManager.addQuestTask(this.activeQuest);
         } else {
-            console.error('Quest Task Manager not found');
-        }
+                    }
         
         // Play quest accepted sound
         if (window.audioManager) {
@@ -559,8 +556,7 @@ class QuestGiver {
         if (isCorrect) {
             // Award XP using the proper function
             if (!window.gameState) {
-                console.error('window.gameState not found!');
-                alert('⚠️ Error: Game not fully loaded. Please try again.');
+                                alert('⚠️ Error: Game not fully loaded. Please try again.');
                 this.close();
                 return;
             }
@@ -579,8 +575,7 @@ class QuestGiver {
            if (typeof window.addJerryXP === 'function') {
                 window.addJerryXP(this.activeQuest.xpReward);
             } else {
-                console.error('addJerryXP function not found');
-            }
+                            }
             
             window.saveGameState();
             
@@ -597,8 +592,7 @@ class QuestGiver {
         } else {
             // Deduct XP
             if (!window.gameState) {
-                console.error('window.gameState not found!');
-                alert('⚠️ Error: Game not fully loaded. Please try again.');
+                                alert('⚠️ Error: Game not fully loaded. Please try again.');
                 this.close();
                 return;
             }

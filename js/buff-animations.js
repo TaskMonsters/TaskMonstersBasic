@@ -8,8 +8,7 @@ async function playHeroBuffAnimation(type) {
 
     const heroSprite = document.getElementById('heroSprite');
     if (!heroSprite) {
-        console.error('[BuffAnimation] Hero sprite not found!');
-        return;
+                return;
     }
     
     // Create overlay element for buff animation
@@ -35,8 +34,7 @@ async function playHeroBuffAnimation(type) {
         // Yellow animation for defend and defense boosts
         animationPath = 'assets/effects/defend-boost-yellow.gif';
     } else {
-        console.warn('[BuffAnimation] Unknown buff type:', type);
-        return;
+                return;
     }
     
     // Position overlay over hero sprite

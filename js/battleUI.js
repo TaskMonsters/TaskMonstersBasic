@@ -613,8 +613,7 @@ function updateActionButtons(hero) {
 function addBattleLog(message) {
     const log = document.getElementById('battleLog');
     if (!log) {
-        console.error('[BattleUI] battleLog element not found');
-        return;
+                return;
     }
     log.innerHTML += `<div>${message}</div>`;
     log.scrollTop = log.scrollHeight;
@@ -1857,8 +1856,7 @@ async function showMirrorAttackAnimation(targetElementId) {
     const battleContainer = document.querySelector('.battle-container');
     
     if (!heroSprite || !enemySprite || !battleContainer) {
-        console.error('Mirror Attack: Required elements not found');
-        return;
+                return;
     }
 
     // Get positions
@@ -1953,7 +1951,7 @@ async function playPoisonLeafAnimation(startElement, targetElement) {
     if (window.audioManager) {
         const audio = new Audio('assets/battle/PoisonLeafSound.mp3');
         audio.volume = 0.5;
-        audio.play().catch(e => console.log('Poison sound failed:', e));
+        audio.play().catch(e => );
     }
 
     await new Promise(resolve => setTimeout(resolve, 800));

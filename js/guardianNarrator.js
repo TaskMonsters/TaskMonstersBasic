@@ -339,8 +339,7 @@ class GuardianNarrator {
     showMessage(message, duration = null) {
         const container = document.getElementById('guardian-message-container');
         if (!container) {
-            console.error('[Guardian] Message container not found');
-            return;
+                        return;
         }
         
         const textElement = container.querySelector('.guardian-text');

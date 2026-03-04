@@ -103,8 +103,7 @@ class LootSystem {
      */
     addLootToInventory(lootDrops) {
         if (!window.inventoryManager) {
-            console.error('[Loot] Inventory manager not found');
-            return;
+                        return;
         }
         
         lootDrops.forEach(item => {

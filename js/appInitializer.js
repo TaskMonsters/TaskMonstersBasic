@@ -16,8 +16,7 @@ class AppInitializer {
      */
     async initialize() {
         if (this.initialized) {
-            console.warn('[AppInit] Already initialized');
-            return;
+                        return;
         }
 
         try {
@@ -45,8 +44,7 @@ class AppInitializer {
             this.initialized = true;
 
         } catch (error) {
-            console.error('[AppInit] Error during initialization:', error);
-            // Fallback: just show the main app
+                        // Fallback: just show the main app
             this.showMainApp();
         }
     }
@@ -83,8 +81,7 @@ class AppInitializer {
             overlay.style.display = 'flex'; // Force display
 
         } else {
-            console.error('[AppInit] Onboarding overlay not found');
-            this.showMainApp();
+                        this.showMainApp();
             return;
         }
         
@@ -115,8 +112,7 @@ class AppInitializer {
             // Timeout after 5 minutes (user might have left)
             setTimeout(() => {
                 clearInterval(checkInterval);
-                console.warn('[AppInit] Onboarding timeout - showing main app anyway');
-                resolve();
+                                resolve();
             }, 300000);
         });
     }
@@ -144,8 +140,7 @@ class AppInitializer {
             window.questGiver.show();
 
         } else {
-            console.error('[AppInit] Quest giver not available');
-            this.showMainApp();
+                        this.showMainApp();
         }
         
         // Note: Quest giver will handle:
@@ -172,8 +167,7 @@ class AppInitializer {
             // Timeout after 2 minutes
             setTimeout(() => {
                 clearInterval(checkInterval);
-                console.warn('[AppInit] Quest giver onboarding timeout - proceeding anyway');
-                resolve();
+                                resolve();
             }, 120000);
         });
     }
