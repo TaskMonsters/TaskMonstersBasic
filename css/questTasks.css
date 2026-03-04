@@ -1,0 +1,219 @@
+/* Quest Tasks Section - Golden Styling */
+
+.quest-tasks-card {
+    background: linear-gradient(135deg, #1a1410 0%, #2d2416 100%);
+    border: 2px solid #fbbf24;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+}
+
+.quest-tasks-header {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    border-bottom: 2px solid #d97706;
+    padding: 16px;
+    border-radius: 12px 12px 0 0;
+}
+
+.quest-tasks-header .card-title {
+    color: #1a1410;
+    font-weight: 700;
+    font-size: 20px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.quest-tasks-subtitle {
+    color: #78350f;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* Quest Task Item */
+.quest-task-item {
+    background: linear-gradient(135deg, #292520 0%, #3d3428 100%);
+    border: 2px solid #d97706;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+    transition: all 0.3s ease;
+}
+
+.quest-task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+    border-color: #fbbf24;
+}
+
+.quest-task-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.quest-task-checkbox {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border: 2px solid #fbbf24;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #1a1410;
+    transition: all 0.2s ease;
+}
+
+.quest-task-checkbox:hover {
+    background: #2d2416;
+    border-color: #fcd34d;
+}
+
+.quest-task-checkbox.checked {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    border-color: #fbbf24;
+}
+
+.quest-task-checkbox.checked::after {
+    content: '✓';
+    color: #1a1410;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.quest-task-content {
+    flex: 1;
+}
+
+.quest-task-text {
+    color: #fbbf24;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.quest-task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.quest-task-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.quest-task-category {
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    color: #fff;
+}
+
+.quest-task-difficulty {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    color: #fff;
+}
+
+.quest-task-difficulty.easy {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+}
+
+.quest-task-difficulty.medium {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    color: #1a1410;
+}
+
+.quest-task-xp {
+    color: #fcd34d;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.quest-task-deadline {
+    color: #fca5a5;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.quest-task-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.quest-task-delete {
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quest-task-delete:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+/* Empty state */
+.quest-tasks-empty {
+    text-align: center;
+    padding: 32px 16px;
+    color: #d97706;
+}
+
+.quest-tasks-empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.quest-tasks-empty-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fbbf24;
+    margin-bottom: 8px;
+}
+
+.quest-tasks-empty-hint {
+    font-size: 14px;
+    color: #d97706;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .quest-task-item {
+        padding: 12px;
+        margin: 8px;
+    }
+
+    .quest-task-text {
+        font-size: 15px;
+    }
+
+    .quest-task-meta {
+        gap: 6px;
+    }
+
+    .quest-task-badge {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+}
+

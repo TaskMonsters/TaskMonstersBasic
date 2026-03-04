@@ -1,0 +1,433 @@
+/* Quest Giver UI - Cute & Modern Style */
+
+.quest-giver-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 35, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.quest-giver-overlay.hidden {
+    display: none;
+}
+
+/* Quest Scene Container */
+.quest-scene {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 16 / 9;
+    background: url('../assets/backgrounds/forest-road.png') center/cover;
+    border-radius: 24px;
+    border: 3px solid #a78bfa;
+    box-shadow: 0 8px 32px rgba(167, 139, 250, 0.4);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* Sprites in Scene */
+.quest-hero-sprite,
+.quest-crow-sprite {
+    position: absolute;
+    bottom: 15%;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    object-fit: none;
+}
+
+.quest-hero-sprite {
+    left: 8%;
+    bottom: 12%; /* Lower to ground level */
+    width: 32px; /* Single frame width */
+    height: 32px; /* Single frame height */
+    transform: scale(2.5); /* Scale for visibility */
+    transform-origin: bottom center;
+    image-rendering: pixelated;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    /* Background image set via JS */
+    animation: questHeroBob 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.quest-crow-sprite {
+    left: 50%;
+    bottom: 15%; /* Lower to ground level, slightly higher than hero */
+    width: 48px; /* Single frame width */
+    height: 48px; /* Single frame height */
+    transform: translateX(-50%) scale(3); /* Center horizontally and increase size by 1.5x (2 * 1.5 = 3) */
+    transform-origin: bottom center;
+    image-rendering: pixelated;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    /* Background image set via JS */
+    animation: questCrowBob 2.8s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes questHeroBob {
+    0%, 100% { transform: scale(2.5) translateY(0); }
+    50% { transform: scale(2.5) translateY(-8px); }
+}
+
+@keyframes questCrowBob {
+    0%, 100% { transform: translateX(-50%) scale(3) translateY(0); }
+    50% { transform: translateX(-50%) scale(3) translateY(-10px); }
+}
+
+/* Dialogue Container */
+.quest-dialogue-container {
+    width: 100%;
+    max-width: 500px;
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    border-radius: 20px;
+    border: 3px solid #a78bfa;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    margin-bottom: 16px;
+}
+
+.quest-dialogue-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(167, 139, 250, 0.3);
+}
+
+.quest-dialogue-icon {
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.quest-dialogue-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c4b5fd;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.quest-dialogue-text {
+    font-size: 15px;
+    color: #e0e7ff;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border-left: 3px solid #a78bfa;
+}
+
+.quest-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fbbf24;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 6px rgba(251, 191, 36, 0.4);
+}
+
+.quest-description {
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.quest-details {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.quest-category,
+.quest-difficulty {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.quest-category {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    color: #fff;
+}
+
+.quest-difficulty {
+    background: linear-gradient(135deg, #fbbf24 0%, #fcd34d 100%);
+    color: #1e1b4b;
+}
+
+.quest-reward,
+.quest-deadline {
+    font-size: 14px;
+    color: #c4b5fd;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quiz-question {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Action Buttons */
+.quest-actions,
+.quiz-actions {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    gap: 12px;
+}
+
+.quest-actions.hidden,
+.quiz-actions.hidden {
+    display: none;
+}
+
+.quest-btn {
+    flex: 1;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.quest-btn-accept {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    color: #fff;
+}
+
+.quest-btn-accept:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.quest-btn-accept:active {
+    transform: translateY(0);
+}
+
+.quest-btn-decline {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    color: #1a1410;
+}
+
+.quest-btn-decline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+}
+
+.quest-btn-decline:active {
+    transform: translateY(0);
+}
+
+/* Quiz Options */
+#quizOptions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 16px;
+}
+
+.quiz-option {
+    padding: 16px;
+    background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%);
+    border: 2px solid #a78bfa;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-option:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+    box-shadow: 0 6px 16px rgba(167, 139, 250, 0.4);
+}
+
+.quiz-option:active {
+    transform: translateY(0);
+}
+
+/* Quiz Pass Button */
+.quiz-pass-btn {
+    grid-column: 1 / -1;
+    padding: 14px;
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    border: 2px solid #fbbf24;
+    border-radius: 16px;
+    color: #1a1410;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin-top: 4px;
+}
+
+.quiz-pass-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+}
+
+.quiz-pass-btn:active {
+    transform: translateY(0);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .quest-scene {
+        max-width: 100%;
+        border-radius: 20px;
+        margin-bottom: 16px;
+    }
+
+    .quest-hero-sprite {
+        height: 30%;
+        left: 5%;
+        bottom: 8%; /* Lower to ground level on mobile */
+    }
+
+    .quest-crow-sprite {
+        height: 25%;
+        left: 50%;
+        bottom: 12%; /* Lower to ground level on mobile */
+    }
+
+    .quest-dialogue-container {
+        max-width: 100%;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .quest-dialogue-header {
+        margin-bottom: 12px;
+    }
+
+    .quest-dialogue-icon {
+        font-size: 24px;
+    }
+
+    .quest-dialogue-label {
+        font-size: 16px;
+    }
+
+    .quest-dialogue-text {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .quest-title {
+        font-size: 18px;
+    }
+
+    .quest-description {
+        font-size: 15px;
+    }
+
+    .quiz-question {
+        font-size: 16px;
+    }
+
+    .quest-btn {
+        padding: 14px 20px;
+        font-size: 15px;
+    }
+
+    .quiz-option {
+        padding: 14px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .quest-scene {
+        border-radius: 16px;
+    }
+
+    .quest-hero-sprite {
+        height: 28%;
+    }
+
+    .quest-crow-sprite {
+        height: 23%;
+    }
+
+    .quest-dialogue-container {
+        padding: 14px;
+    }
+
+    .quest-dialogue-text {
+        font-size: 13px;
+    }
+
+    .quest-title {
+        font-size: 17px;
+    }
+
+    .quest-description {
+        font-size: 14px;
+    }
+
+    .quest-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    #quizOptions {
+        gap: 10px;
+    }
+
+    .quiz-option {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+/* Merlin GIF Styling */
+.merlin-gif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+    transform-origin: center;
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    max-height: 80%;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    z-index: 10;
+}

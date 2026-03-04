@@ -1,0 +1,31 @@
+/* Shop Item Quantity Display */
+.shop-item-quantity {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+/* Shop Buy Button - consistent with buy-now-btn */
+.shop-buy-btn {
+    width: 100%;
+    padding: 8px 16px;
+    background: #1a1a1a;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: auto;
+}
+
+.shop-buy-btn:hover:not(:disabled) {
+    background: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.shop-buy-btn:disabled {
+    cursor: not-allowed;
+}

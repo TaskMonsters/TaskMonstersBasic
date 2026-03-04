@@ -1,0 +1,427 @@
+/* dark-theme.css - Dark mode only styles (508 compliant) */
+
+:root {
+  /* Dark theme colors */
+  --bg-primary: #111;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #222;
+  --text-primary: #fff;
+  --text-secondary: #ccc;
+  --text-tertiary: #999;
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --modal-overlay: rgba(0, 0, 0, 0.8);
+  
+  /* Accent colors */
+  --accent-primary: #6c5ce7;
+  --accent-secondary: #5b4bc4;
+  --accent-tertiary: #4a3aa3;
+  
+  /* UI elements */
+  --health-bar-bg: #404040;
+  --health-bar-fill: #34d399;
+  --enemy-bar-fill: #f87171;
+  --button-bg: #6c5ce7;
+  --button-hover-bg: #5b4bc4;
+  --button-disabled-bg: #555;
+  
+  /* Borders and shadows */
+  --border-light: #333;
+  --border-medium: #444;
+  --border-dark: #555;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.25s ease-out;
+  --transition-slow: 0.35s ease-out;
+}
+
+/* Sprite sheet animations for hero */
+#heroSprite {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: none;
+  object-position: 0 0;
+  image-rendering: pixelated;
+  animation: sprite-idle 0.8s steps(4) infinite;
+}
+
+#heroSprite.attacking {
+  animation: sprite-attack 0.6s steps(4) forwards;
+}
+
+#heroSprite.hurt {
+  animation: sprite-hurt 0.5s steps(4) forwards;
+}
+
+#heroSprite.celebrating {
+  animation: sprite-celebrate 1s steps(4) forwards;
+}
+
+/* Sprite animations - 4 frames horizontal */
+@keyframes sprite-idle {
+  from { object-position: 0 0; }
+  to { object-position: -128px 0; }
+}
+
+@keyframes sprite-attack {
+  from { object-position: 0 0; }
+  to { object-position: -128px 0; }
+}
+
+@keyframes sprite-hurt {
+  from { object-position: 0 0; }
+  to { object-position: -128px 0; }
+}
+
+@keyframes sprite-celebrate {
+  from { object-position: 0 0; }
+  to { object-position: -128px 0; }
+}
+
+/* Battle modal styles */
+#battleModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--modal-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#battleModal.hidden {
+  display: none !important;
+}
+
+.battle-container {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-medium);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+}
+
+.battle-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.battle-arena {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+
+.battle-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.battle-sprite {
+  width: 64px !important;
+  height: 64px !important;
+  object-fit: none;
+  object-position: 0 0;
+  margin-bottom: 12px;
+  image-rendering: pixelated;
+  transform: scale(2);
+}
+
+/* Battle sprite animations */
+.battle-sprite {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: none !important;
+  object-position: 0 0 !important;
+  image-rendering: pixelated !important;
+  transform: scale(2);
+  transform-origin: top left;
+  display: block;
+}
+
+.battle-sprite.hero {
+  animation: sprite-idle 0.8s steps(4) infinite;
+}
+
+.battle-sprite.hero.attacking {
+  animation: sprite-attack 0.6s steps(4) forwards;
+}
+
+.battle-sprite.hero.hurt {
+  animation: sprite-hurt 0.5s steps(4) forwards;
+}
+
+.battle-sprite.enemy {
+  animation: sprite-enemy-idle 0.8s steps(4) infinite;
+}
+
+.battle-sprite.enemy.attacking {
+  animation: sprite-enemy-attack 0.6s steps(4) forwards;
+}
+
+@keyframes sprite-enemy-idle {
+  from { object-position: 0 0; }
+  to { object-position: -128px 0; }
+}
+
+@keyframes sprite-enemy-attack {
+  from { object-position: 0 0; }
+  to { object-position: -128px 0; }
+}
+
+.battle-hp-bar {
+  width: 100%;
+  height: 20px;
+  background: var(--health-bar-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  border: 1px solid var(--border-medium);
+}
+
+.battle-hp-fill {
+  height: 100%;
+  transition: width var(--transition-normal);
+  border-radius: 10px;
+}
+
+.battle-hp-fill.hero {
+  background: var(--health-bar-fill);
+}
+
+.battle-hp-fill.enemy {
+  background: var(--enemy-bar-fill);
+}
+
+.battle-hp-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.battle-vs {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--accent-primary);
+}
+
+.battle-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.battle-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--button-bg);
+  color: var(--text-primary);
+}
+
+.battle-btn:hover:not(:disabled) {
+  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.battle-btn:disabled {
+  background: var(--button-disabled-bg);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.battle-btn.defend {
+  background: #3b82f6;
+}
+
+.battle-btn.defend:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.battle-btn.run {
+  background: #ef4444;
+}
+
+.battle-btn.run:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+/* Game message styles */
+#gameMessage {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 2px solid var(--accent-primary);
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  max-width: 90%;
+  animation: slideDown var(--transition-normal);
+}
+
+#gameMessage.hidden {
+  display: none !important;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Explore button styles */
+#exploreButton {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  margin: 16px 0;
+  box-shadow: var(--shadow-md);
+}
+
+#exploreButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-tertiary) 100%);
+}
+
+#exploreButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Home scene with background */
+#homeScene {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+#homeBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Hero sprite in home scene - larger and animated */
+#homeScene #heroSprite {
+  position: relative;
+  z-index: 2;
+  width: 64px !important;
+  height: 64px !important;
+  object-fit: none;
+  object-position: 0 0;
+  image-rendering: pixelated;
+  transform: scale(2);
+  animation: sprite-idle 0.8s steps(4) infinite;
+}
+
+/* Creature image in header - also needs sprite animation */
+.creature-container {
+  position: relative;
+  z-index: 10;
+}
+
+.creature-image {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: none !important;
+  object-position: 0 0 !important;
+  image-rendering: pixelated !important;
+  transform: scale(2);
+  transform-origin: top left;
+  animation: sprite-idle 0.8s steps(4) infinite;
+  display: block;
+  max-width: 32px !important;
+  max-height: 32px !important;
+}
+
+/* Loading message */
+#loadingMessage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 24px 32px;
+  border-radius: 12px;
+  border: 2px solid var(--accent-primary);
+  box-shadow: var(--shadow-lg);
+  z-index: 3000;
+  font-size: 18px;
+  font-weight: 600;
+  display: none;
+}
+
+/* Inventory section */
+#inventorySection {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+
+
+/* Calendar icon fix for dark mode - make it visible */
+[data-theme="dark"] input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) !important;
+  opacity: 1 !important;
+  cursor: pointer;
+}
+

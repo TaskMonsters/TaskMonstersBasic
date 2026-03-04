@@ -1,0 +1,23 @@
+/* Fix for Self Doubt Drone - Add gentle hover animation */
+
+/* Hover animation for Self Doubt Drone */
+@keyframes gentleHover {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Apply hover animation to enemy sprite when it's Self Doubt Drone */
+#enemySprite[data-enemy="Self Doubt Drone"],
+#enemySprite[data-enemy="Self-Doubt Drone"] {
+    animation: gentleHover 2s ease-in-out infinite !important;
+}
+
+/* Also apply to battle enemy sprite container */
+.battle-enemy-sprite[data-enemy="Self Doubt Drone"],
+.battle-enemy-sprite[data-enemy="Self-Doubt Drone"] {
+    animation: gentleHover 2s ease-in-out infinite !important;
+}

@@ -1,0 +1,29 @@
+/* assets/css/tr-onboarding.css — Onboarding modal only (scoped). */
+:root {
+  --tr-surface: var(--surface, #ffffff);
+  --tr-text: var(--text, #111111);
+  --tr-text-muted: var(--text-muted, #6b7280);
+  --tr-border: var(--border, rgba(0,0,0,0.12));
+  --tr-shadow: var(--shadow, 0 10px 30px rgba(0,0,0,0.15));
+  --tr-radius: var(--radius-lg, 16px);
+  --tr-backdrop: var(--backdrop, rgba(0,0,0,0.45));
+  --tr-danger: var(--danger, #b91c1c);
+  --tr-input-bg: var(--input-bg, var(--tr-surface));
+  --tr-input-border: var(--input-border, var(--tr-border));
+}
+.tr-onboarding__backdrop{position:fixed;inset:0;background:var(--tr-backdrop);display:none;opacity:0;transition:opacity .16s ease;z-index:9998}
+.tr-onboarding__container{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:9999}
+.tr-onboarding__container[aria-hidden="false"],.tr-onboarding__backdrop[data-open="true"]{display:flex}
+.tr-onboarding__backdrop[data-open="true"]{display:block;opacity:1}
+.tr-onboarding__dialog{width:min(92vw,520px);max-width:520px;background:var(--tr-surface);color:var(--tr-text);border:1px solid var(--tr-border);border-radius:var(--tr-radius);box-shadow:var(--tr-shadow);padding:20px 20px 16px;outline:none}
+.tr-onboarding__title{margin:0 0 6px 0;font-weight:700;line-height:1.2}
+.tr-onboarding__intro{margin:0 0 10px 0;color:var(--tr-text-muted)}
+.tr-onboarding__bullets{margin:0 0 10px 20px;color:var(--tr-text)}
+.tr-onboarding__bullets li{margin:6px 0}
+.tr-onboarding__privacy{margin:8px 0 14px 0;font-size:.925rem;color:var(--tr-text-muted)}
+.tr-onboarding__field{margin:10px 0 8px 0}
+.tr-onboarding__label{display:block;margin-bottom:6px;font-weight:600}
+.tr-onboarding__input{width:100%;box-sizing:border-box;background:var(--tr-input-bg);color:var(--tr-text);border:1px solid var(--tr-input-border);border-radius:var(--tr-radius);padding:10px 12px;line-height:1.2}
+.tr-onboarding__error{margin-top:6px;font-size:.875rem;color:var(--tr-danger);min-height:1.2em}
+.tr-onboarding__actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+@media (max-width:420px){.tr-onboarding__dialog{padding:16px 14px 12px}}

@@ -1,0 +1,26 @@
+{
+  "id": "base-rock",
+  "displayName": "Pebble Hero",
+  "rarity": "common",
+  "sprites": {
+    "idle": "/assets/heroes/rock-idle.png",
+    "attack": "/assets/heroes/rock-attack.png"
+  },
+  "frames": {
+    "idle": 6,
+    "attack": 8
+  },
+  "size": [64, 64],
+  "growth": {
+    "attack": "5 + level * 2",
+    "defense": "4 + level * 1.5",
+    "energy": "100 + level * 3"
+  },
+  "abilities": ["fireball"],
+  "messages": {
+    "intro": "🪨 Pebble Hero is ready to roll!",
+    "levelUp": "✨ You feel stronger, more solid than ever!"
+  },
+  "unlockCondition": "default"
+}
+

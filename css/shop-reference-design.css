@@ -1,0 +1,238 @@
+/* ============================================
+   SHOP CARDS - REFERENCE DESIGN
+   ============================================
+   
+   Based on reference image with:
+   - Vertical layout with distinct sections
+   - Large icon area at top
+   - Item name below icon
+   - Green XP price
+   - Separate lock section at bottom
+   ============================================ */
+
+/* Shop Items Grid - Fixed 2 Columns */
+.shop-items-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px;
+    padding: 0;
+    width: 100%;
+}
+
+/* Responsive gap only */
+@media (min-width: 480px) {
+    .shop-items-grid {
+        gap: 20px;
+    }
+}
+
+/* Shop Item Card - Vertical Layout */
+.shop-item-card {
+    /* Dark background matching reference */
+    background: #0a0a0a;
+    
+    /* Subtle border */
+    border: 1px solid #1a1a1a;
+    
+    /* Moderate border-radius */
+    border-radius: 12px;
+    
+    padding: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    
+    /* Flexbox for vertical stacking */
+    display: flex;
+    flex-direction: column;
+    
+    /* Flexible height */
+    min-height: 320px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    /* Subtle shadow */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hover state */
+.shop-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border-color: #2a2a2a;
+}
+
+/* Active/Equipped state */
+.shop-item-card.active,
+.shop-item-card.equipped {
+    border: 2px solid #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3), 
+                0 6px 18px rgba(76, 175, 80, 0.25);
+}
+
+/* Locked state */
+.shop-item-card.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Special height for skin cards */
+.shop-item-card.skin-card {
+    min-height: 380px;
+}
+
+/* Icon Section - Large area at top */
+.shop-item-emoji {
+    font-size: 56px;
+    margin-bottom: 16px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.shop-item-emoji img {
+    max-width: 72px;
+    max-height: 72px;
+    object-fit: contain;
+    image-rendering: crisp-edges;
+}
+
+/* Item Name - Prominent */
+.shop-item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e0e0e0;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Item Description - Secondary */
+.shop-item-description,
+.shop-item-desc {
+    font-size: 11px;
+    color: #888888;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Quantity Display */
+.shop-item-quantity {
+    font-size: 10px;
+    color: #666666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* XP Cost - GREEN like reference */
+.shop-item-cost {
+    font-size: 14px;
+    font-weight: 700;
+    color: #10b981;  /* Green color from reference */
+    margin-top: auto;
+    margin-bottom: 16px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+}
+
+/* Lock Section - Separate bottom container */
+.shop-item-lock-section {
+    margin-top: auto;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.shop-item-lock-icon {
+    font-size: 20px;
+    opacity: 0.6;
+}
+
+.shop-item-lock-text {
+    font-size: 12px;
+    color: #888888;
+    font-weight: 500;
+}
+
+/* Buy Button - Full width at bottom */
+.shop-buy-btn,
+.buy-now-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(40, 40, 40, 0.8);
+    color: #e0e0e0;
+    border: 1px solid rgba(80, 80, 80, 0.6);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+/* Button hover */
+.shop-buy-btn:hover:not(:disabled),
+.buy-now-btn:hover:not(:disabled) {
+    background: rgba(60, 60, 60, 0.9);
+    border-color: rgba(100, 100, 100, 0.7);
+    transform: translateY(-1px);
+}
+
+/* Button active state */
+.shop-buy-btn:active:not(:disabled),
+.buy-now-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Button disabled state */
+.shop-buy-btn:disabled,
+.buy-now-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(50, 50, 50, 0.6);
+    border-color: rgba(80, 80, 80, 0.5);
+    color: rgba(150, 150, 150, 0.7);
+}
+
+/* Success/Equipped button variant */
+.shop-buy-btn.equipped,
+.buy-now-btn.equipped {
+    background: rgba(30, 60, 40, 0.7);
+    border-color: rgba(76, 175, 80, 0.5);
+    color: rgba(139, 195, 74, 0.9);
+}
+
+.shop-buy-btn.equipped:hover,
+.buy-now-btn.equipped:hover {
+    background: rgba(40, 80, 50, 0.8);
+    border-color: rgba(100, 195, 100, 0.6);
+}
+
+/* Accessibility */
+.shop-buy-btn:focus,
+.buy-now-btn:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}

@@ -1,0 +1,35 @@
+{
+  "id": "lazy-bat",
+  "displayName": "Lazy Bat",
+  "type": "common",
+  "levelRange": [1, 5],
+  "sprites": {
+    "idle": "/assets/enemies/bat-idle.png",
+    "attack": "/assets/enemies/bat-attack.png"
+  },
+  "frames": {
+    "idle": 8,
+    "attack": 9
+  },
+  "size": [64, 64],
+  "stats": {
+    "baseHP": 30,
+    "baseAttack": 6,
+    "baseDefense": 3,
+    "xpReward": 5
+  },
+  "sounds": {
+    "spawn": "/assets/audio/battle-start.mp3",
+    "attack": "/assets/audio/attack-hit.mp3",
+    "retreat": "/assets/audio/retreat.mp3"
+  },
+  "messages": {
+    "intro": "🦇 Lazy Bat flutters in to steal your focus!",
+    "victory": "✨ Lazy Bat retreats to nap elsewhere!"
+  },
+  "dropTable": {
+    "Fireball": 0.25,
+    "XPx2": 0.15
+  }
+}
+

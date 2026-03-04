@@ -1,0 +1,332 @@
+/* ============================================
+   SHOP SECTION - REFACTORED & FIXED
+   ============================================
+   
+   Fixes:
+   - Button overlap resolved with proper flexbox anchoring
+   - Consistent spacing and card heights
+   - Improved visual hierarchy
+   - Responsive grid layout
+   - Accessibility improvements
+   - Game-like polish with shadows and hover states
+   ============================================ */
+
+/* Shop Items Grid - Responsive */
+.shop-items-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0;
+    width: 100%;
+}
+
+/* Responsive breakpoints */
+@media (min-width: 480px) {
+    .shop-items-grid {
+        gap: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .shop-items-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .shop-items-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Shop Item Card - Self-Contained Container */
+.shop-item-card {
+    /* Reference card gradient background */
+    background: linear-gradient(135deg, #0a0f0d 0%, #101712 100%);
+    
+    /* Thicker border like reference (2px instead of 1px) */
+    border: 2px solid #374151;
+    
+    /* Match reference border-radius (12px instead of 16px) */
+    border-radius: 12px;
+    
+    padding: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    
+    /* CRITICAL: Flexbox setup for button anchoring */
+    display: flex;
+    flex-direction: column;
+    
+    /* Use min-height instead of fixed height for flexibility */
+    min-height: 280px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    /* Reference shadow */
+    box-shadow: 0 2px 8px rgba(55, 65, 81, 0.2);
+    
+    /* Prevent content overflow */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hover state - game-like lift effect (matching reference) */
+.shop-item-card:hover {
+    /* Reference hover lift effect (2px instead of 4px) */
+    transform: translateY(-2px);
+    
+    /* Reference enhanced shadow */
+    box-shadow: 0 4px 12px rgba(55, 65, 81, 0.4);
+    
+    /* Reference hover border color */
+    border-color: #4b5563;
+}
+
+/* Active/Equipped state */
+.shop-item-card.active,
+.shop-item-card.equipped {
+    border: 2px solid #A5F247;
+    box-shadow: 0 0 0 2px rgba(165, 242, 71, 0.35), 
+                0 6px 18px rgba(165, 242, 71, 0.25);
+}
+
+/* Locked state */
+.shop-item-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Maxed state */
+.shop-item-card.maxed {
+    opacity: 0.7;
+}
+
+/* Special height for skin cards */
+.shop-item-card.skin-card {
+    min-height: 360px;
+}
+
+/* Content wrapper - separates content from button */
+.shop-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Item Icon/Emoji - Top of card */
+.shop-item-emoji {
+    font-size: 48px;
+    margin-bottom: 8px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.shop-item-emoji img {
+    max-width: 64px;
+    max-height: 64px;
+    object-fit: contain;
+    image-rendering: crisp-edges;
+}
+
+/* Item Name - Largest, most prominent */
+.shop-item-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    
+    /* Prevent text overflow */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Item Description - Secondary text */
+.shop-item-description,
+.shop-item-desc {
+    font-size: 12px;
+    color: #999999;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    
+    /* Limit to 3 lines with ellipsis */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Quantity Display - Clear separation */
+.shop-item-quantity {
+    font-size: 11px;
+    color: #888888;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* XP Cost - Accent color badge style */
+.shop-item-cost {
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFD700;
+    margin-top: auto;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    background: rgba(255, 215, 0, 0.15);
+    border-radius: 8px;
+    display: inline-block;
+    align-self: center;
+}
+
+/* Buy Button - CRITICAL FIX */
+.shop-buy-btn,
+.buy-now-btn {
+    /* CRITICAL: This anchors button to bottom of card */
+    margin-top: auto;
+    
+    /* Button styling */
+    width: 100%;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    
+    /* Strong visual affordance */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    /* Prevent button from growing */
+    flex-shrink: 0;
+}
+
+/* Button hover - game-like interaction */
+.shop-buy-btn:hover:not(:disabled),
+.buy-now-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Button active state */
+.shop-buy-btn:active:not(:disabled),
+.buy-now-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Button disabled state */
+.shop-buy-btn:disabled,
+.buy-now-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #1a1a1a;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+/* Success/Equipped button variant */
+.shop-buy-btn.equipped,
+.buy-now-btn.equipped {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    border-color: #22c55e;
+}
+
+.shop-buy-btn.equipped:hover,
+.buy-now-btn.equipped:hover {
+    background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+}
+
+/* Max quantity indicator */
+.shop-item-max-quantity {
+    font-size: 10px;
+    color: #666666;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* Owned Items Grid (Inventory view) */
+.owned-item-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease-out;
+}
+
+.owned-item-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Accessibility improvements */
+.shop-buy-btn:focus,
+.buy-now-btn:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.shop-item-card.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Small screen optimizations */
+@media (max-width: 360px) {
+    .shop-item-card {
+        min-height: 260px;
+        padding: 12px;
+    }
+    
+    .shop-item-emoji {
+        font-size: 40px;
+        height: 56px;
+    }
+    
+    .shop-item-name {
+        font-size: 15px;
+    }
+    
+    .shop-buy-btn,
+    .buy-now-btn {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Large screen enhancements */
+@media (min-width: 1024px) {
+    .shop-items-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

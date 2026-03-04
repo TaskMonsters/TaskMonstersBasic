@@ -1,0 +1,87 @@
+/* assets/css/speech-bubble.css */
+
+#jerryDialogueContainer {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    background-color: #ffffff;
+    border: 3px solid #9AE34A;
+    border-radius: 25px;
+    padding: 20px 24px;
+    max-width: 320px;
+    /* Fix: Use flexbox to ensure content flows horizontally */
+    display: flex;
+    align-items: center;
+    min-width: 220px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform-origin: bottom center;
+    z-index: 1000;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+#jerryDialogueContainer::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #9AE34A;
+}
+
+#jerryDialogueContainer::before {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #ffffff;
+    z-index: 1001;
+}
+
+#jerryDialogueContainer.dialogue-show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+#jerryDialogueContainer.dialogue-hide {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+}
+
+#jerryDialogueText {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.4;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Dark theme support */
+[data-theme="dark"] #jerryDialogueContainer {
+    background-color: var(--bg-secondary);
+    border-color: #9AE34A;
+}
+
+[data-theme="dark"] #jerryDialogueContainer::before {
+    border-top-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] #jerryDialogueText {
+    color: var(--text-primary);
+}
+
+
